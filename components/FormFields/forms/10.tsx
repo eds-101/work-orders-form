@@ -1,4 +1,4 @@
-//QC Check
+//Quality Check (Visual Checks)
 const FormExtra: React.FunctionComponent = () => {
 
     return (

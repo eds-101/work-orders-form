@@ -3,8 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Layout from '../components/Layout'
 import Extra from '../components/FormFields/module'
-import workOrders from '../data/workOrders'
-import app from '../components/FormFields/forms'
+import workOrders from '../components/FormFields/workOrders'
 
 let extraFieldsLookup: object
 extraFieldsLookup = {
@@ -19,6 +18,14 @@ extraFieldsLookup = {
   8: <Extra.Fields8 />,
   9: <Extra.Fields9 />,
   10: <Extra.Fields10 />,
+  11: <Extra.Fields11 />,
+  12: <Extra.Fields12 />,
+  13: <Extra.Fields13 />,
+  14: <Extra.Fields14 />,
+  15: <Extra.Fields15 />,
+  16: <Extra.Fields16 />,
+  17: <Extra.Fields17 />,
+  18: <Extra.Fields18 />,
 }
 
 const IndexPage: NextPage = () => {

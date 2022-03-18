@@ -1,5 +1,3 @@
-import React from 'react';
-
 //Pre Pick and Pack
 const FormExtra: React.FunctionComponent = () => {
     const today = new Date().toISOString().slice(0,10)
