@@ -10,6 +10,15 @@ let extraFieldsLookup: object
 extraFieldsLookup = {
   0: <Extra.Fields0 />,
   1: <Extra.Fields1 />,
+  2: <Extra.Fields2 />,
+  3: <Extra.Fields3 />,
+  4: <Extra.Fields4 />,
+  5: <Extra.Fields5 />,
+  6: <Extra.Fields6 />,
+  7: <Extra.Fields7 />,
+  8: <Extra.Fields8 />,
+  9: <Extra.Fields9 />,
+  10: <Extra.Fields10 />,
 }
 
 const IndexPage: NextPage = () => {
@@ -60,7 +69,6 @@ const IndexPage: NextPage = () => {
         <label htmlFor="number">Contact Number</label>
         <input required type="tel" id='number'/>
         <br />
-        <button type="submit">Submit Work Order</button>
 
         <label htmlFor="orderMenu">Work Order</label>
         <select required name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
@@ -69,6 +77,9 @@ const IndexPage: NextPage = () => {
           )}
         </select>
         {extraFields}
+        <br />
+        <br />
+        <button type="submit">Submit Work Order</button>
       </form>
       {Object.values(custDetails)}
     </Layout>
