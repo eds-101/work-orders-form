@@ -1,0 +1,22 @@
+export default [
+    {order: 'Pre Pick and Pack', index: 0},
+    {order: 'Bag and tag', index: 1},
+    {order: 'Arranging a courier collection and delivery', index: 2},
+    {order: 'Sewing', index: 3},
+    {order: 'Swing Tags', index: 4},
+    {order: 'Order Personalisation', index: 5},
+    {order: 'Barcoding/ Labelling', index: 6},
+    {order: 'Manual Shipment', index: 7},
+    {order: 'Making up a Gift Pack', index: 8},
+    {order: 'Manual Booking In', index: 9},
+    {order: 'QC Check (Visual Checks)', index: 12355},
+    {order: 'Ceramics', index: 11},
+    {order: 'Garments', index: 12},
+    {order: 'Steam, Fold and Repack', index: 13},
+    {order: 'Rebagging', index: 14},
+    {order: 'Barcoding of Fabric Rolls', index: 15},
+    {order: 'Shipping of Fabric Rolls', index: 16},
+    {order: 'Stock call', index: 17},
+    {order: 'Bespoke QC', index: 18},
+    {order: 'Stock Count', index: 19}
+]
