@@ -14,14 +14,11 @@ extraFieldsLookup = {
 
 const IndexPage: NextPage = () => {
   const [custDetails, setCustDetails] = useState({
-    brand: '', name: '', number: '', order: ''
+    brand: '', name: ''
   })
-  const [orderDetails, setOrderDetails] = useState({})
   const [extraFields, setExtraFields] = useState("")
   
   const handleWorkOrder = (value: String) => {
-    setCustDetails(oldValues => ({...oldValues, ["order"]: value}))
-    setOrderDetails({})
     const index = workOrders.filter(x => x.order === value)[0].index
     const component = extraFieldsLookup[index]
     setExtraFields(component)
@@ -29,7 +26,6 @@ const IndexPage: NextPage = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault() 
-    let formElements = e.target.elements
     Array.prototype.forEach.call(e.target.elements, (element) => {
       console.log(element.id, "  ", element.value);
     })
@@ -41,12 +37,6 @@ const IndexPage: NextPage = () => {
     }
   }
 
-  const add = (name: string) => {
-    return ({ target: { value } }: {target: any, value: any} ) => {
-      setOrderDetails(oldValues => ({...oldValues, [name]: value}))
-    }
-  }
-
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
       <Image src='/logoBlack.png' height='100rem' width='200rem' alt='logo' />
@@ -55,8 +45,8 @@ const IndexPage: NextPage = () => {
       </h1>
       <br />
       <form onSubmit={handleSubmit}>
-        <label htmlFor="brandMenu">Brand Name</label>
-        <select required name="brand" id="brandMenu" onChange={set('brand')}>
+        <label htmlFor="brand">Brand Name</label>
+        <select required name="brand" id="brand" onChange={set('brand')}>
           <option hidden disabled selected>Select</option>
           <option value="Arc Minute">Arc Minute</option>
           <option value="Bettina Ceramica">Bettina Ceramica</option>
@@ -68,7 +58,7 @@ const IndexPage: NextPage = () => {
         <br />
 
         <label htmlFor="number">Contact Number</label>
-        <input required type="tel" id='number' onChange={set('number')}/>
+        <input required type="tel" id='number'/>
         <br />
         <button type="submit">Submit Work Order</button>
 
@@ -81,8 +71,6 @@ const IndexPage: NextPage = () => {
         {extraFields}
       </form>
       {Object.values(custDetails)}
-      <br />
-      {Object.values(orderDetails)}
     </Layout>
   )
 }
