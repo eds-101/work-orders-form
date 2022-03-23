@@ -48,21 +48,21 @@ const IndexPage: NextPage = () => {
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
-        <body class="bg-black">
-            <div class="flex min-h-screen items-center justify-center">
+        <body className="bg-black">
+            <div className="flex min-h-screen items-center justify-center">
 
-                <div class="bg-white border border-none p-6 rounded-2xl">
+                <div className="bg-white border border-none p-6 rounded-2xl">
 
-                    <div class="mx-4 sm:mx-24 md:mx-34 lg:mx-56 mx-auto  flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
-                            <div class="w-4/5">
+                    <div className="mx-4 sm:mx-24 md:mx-34 lg:mx-56 mx-auto  flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
+                            <div className="w-4/5">
                                 <Image src={logoOrange} layout="responsive"  alt="pic" />
-                                <h1 class="text-black text-center text-2xl">Submit Your Work Order</h1>
+                                <h1 className="text-black text-center text-2xl">Submit Your Work Order</h1>
                             </div>
 
                         <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" >  
-                            <h1 class="text-black text-2xl">Enter Your Details</h1>
+                            <h1 className="text-black text-2xl">Enter Your Details</h1>
 
-                        <select required class="w-full p-2 bg-black rounded-md  border border-gray-700 "
+                        <select required className="w-full p-2 bg-black rounded-md  border border-gray-700 "
                         name="brand" id="brand">
                             <option hidden disabled selected>Brand Name</option>
                             {brands.sort(function(a,b){
@@ -75,14 +75,14 @@ const IndexPage: NextPage = () => {
                             }
                         </select>
                                
-                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
+                        <input required className="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
                          id='name' placeholder="Your Name" type="text" />
                         
-                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
+                        <input required className="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
                          id='number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
-                        <select required class="w-full bg-black rounded-md  border border-gray-700"
+                        <select required className="w-full bg-black rounded-md  border border-gray-700"
                          name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
                           <option hidden disabled selected>Select One, Enter Details and Submit</option>
                           {workOrders.map( ({order})  =>  <option value={order}>{order}</option>
@@ -91,7 +91,7 @@ const IndexPage: NextPage = () => {
 
                         {extraFields}
                         
-                        <input class="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white hover:text-black border border-gray-700 cursor-pointer"
+                        <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white hover:text-black border border-gray-700 cursor-pointer"
                             type="submit" />
 
                         </form>
