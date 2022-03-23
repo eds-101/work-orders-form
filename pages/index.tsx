@@ -7,7 +7,7 @@ import Extra from '../components/FormFields/module'
 import workOrders from '../components/FormFields/workOrders'
 import brands from '../components/data/brands'
 
-let extraFieldsLookup: object
+let extraFieldsLookup: any
 extraFieldsLookup = {
   0: <Extra.Fields0 />,
   1: <Extra.Fields1 />,
@@ -37,7 +37,7 @@ const IndexPage: NextPage = () => {
   const [extraFields, setExtraFields] = useState("")
   
   const handleWorkOrder = (value: String) => {
-    const index = workOrders.filter(x => x.order === value)[0].index
+    const index = workOrders.filter((x: any) => x.order === value)[0].index
     const component = extraFieldsLookup[index]
     setExtraFields(component)
   }
