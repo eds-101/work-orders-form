@@ -31,9 +31,6 @@ extraFieldsLookup = {
 }
 
 const IndexPage: NextPage = () => {
-  const [custDetails, setCustDetails] = useState({
-    brand: '', name: ''
-  })
   const [extraFields, setExtraFields] = useState("")
   
   const handleWorkOrder = (value: String) => {
@@ -47,12 +44,6 @@ const IndexPage: NextPage = () => {
     Array.prototype.forEach.call(e.target.elements, (element) => {
       console.log(element.id, "  ", element.value);
     })
-  }
-
-  const set = (name: string) => {
-    return ({ target: { value } }: {target: any, value: any} ) => {
-      setCustDetails(oldValues => ({...oldValues, [name]: value}))
-    }
   }
 
   return (
@@ -72,7 +63,7 @@ const IndexPage: NextPage = () => {
                             <h1 class="text-black text-2xl">Enter Your Details</h1>
 
                         <select required class="w-full p-2 bg-black rounded-md  border border-gray-700 "
-                        name="brand" id="brand" onChange={set('brand')}>
+                        name="brand" id="brand">
                             <option hidden disabled selected>Brand Name</option>
                             {brands.sort(function(a,b){
                               if(a.brandName < b.brandName) { return -1; }
@@ -85,7 +76,7 @@ const IndexPage: NextPage = () => {
                         </select>
                                
                         <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
-                         id='name' onChange={set('name')}  placeholder="Your Name" type="text" />
+                         id='name' placeholder="Your Name" type="text" />
                         
                         <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
                          id='number' placeholder="Contact Number" type="tel" />
