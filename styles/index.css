@@ -3,3 +3,12 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  label {
+    @apply text-xl;
+  }
+}

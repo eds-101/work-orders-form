@@ -55,24 +55,40 @@ const IndexPage: NextPage = () => {
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
-     <body class="font-mono bg-black">
-        <div class="container mx-auto">
-          <div class="flex justify-center px-6 my-12">
-            <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+      <Image src='/logoBlack.png' height='100rem' width='200rem' alt='logo' />
+      <h1
+      >Submit Your Work Order
+      </h1>
+      <br />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="brand">Brand Name</label>
+        <select required name="brand" id="brand" onChange={set('brand')}>
+          <option hidden disabled selected>Select</option>
+          <option value="Arc Minute">Arc Minute</option>
+          <option value="Bettina Ceramica">Bettina Ceramica</option>
+        </select>
 
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-									href="./index.html"
-								>
-                    Already have an account? Login!
-                  </a>
-                </div>
-            </div>
-          </div>
-        </div>
-    </body>
+        <br />
+        <label htmlFor="name">Contact Name</label>
+        <input required type="text" id='name' onChange={set('name')}/>
+        <br />
 
+        <label htmlFor="number">Contact Number</label>
+        <input required type="tel" id='number'/>
+        <br />
+
+        <label htmlFor="orderMenu">Work Order</label>
+        <select required name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
+          <option hidden disabled selected>Choose here</option>
+          {workOrders.map( ({order})  =>  <option value={order}>{order}</option>
+          )}
+        </select>
+        {extraFields}
+        <br />
+        <br />
+        <button type="submit">Submit Work Order</button>
+      </form>
+      {Object.values(custDetails)}
     </Layout>
   )
 }
