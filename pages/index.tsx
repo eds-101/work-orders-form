@@ -81,9 +81,9 @@ const IndexPage: NextPage = () => {
                             </div>
 
                         <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" >  
-                            <h1 class="text-black text-2xl">Start Here</h1>
+                            <h1 class="text-black text-2xl">Enter Your Details</h1>
 
-                        <select required class="w-full p-2 bg-black rounded-md  border border-gray-700 focus:border-blue-700"
+                        <select required class="w-full p-2 bg-black rounded-md  border border-gray-700 "
                         name="brand" id="brand" onChange={set('brand')}>
                             <option hidden disabled selected>Brand Name</option>
                             {brands.sort(function(a,b){
@@ -96,16 +96,16 @@ const IndexPage: NextPage = () => {
                             }
                         </select>
                                
-                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700 focus:border-blue-700"
+                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
                          id='name' onChange={set('name')}  placeholder="Your Name" type="text" />
                         
-                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700 focus:border-blue-700"
+                        <input required class="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
                          id='number' placeholder="Contact Number" type="tel" />
 
-
-                        <select required class="w-full p-2 bg-black rounded-md  border border-gray-700 focus:border-blue-700"
+                        <label htmlFor="description">Choose a Work Order</label>
+                        <select required class="w-full bg-black rounded-md  border border-gray-700"
                          name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
-                          <option hidden disabled selected>Choose a Work Order</option>
+                          <option hidden disabled selected>Select One, Enter Details and Submit</option>
                           {workOrders.map( ({order})  =>  <option value={order}>{order}</option>
                           )}
                         </select>
