@@ -10,13 +10,14 @@ const FormExtra: React.FunctionComponent = () => {
         <input required type="text" id='quantity' />
 
         <label htmlFor="barcodeRequired">Barcode Required</label>
-        <input type="radio" id="yes" name="barcodeRequired" value="yes" />
-        <label htmlFor="yes">Yes</label><br />
-        <input type="radio" id="no" name="barcodeRequired" value="no" />
-        <label htmlFor="no">No</label><br />
+        <select required name="barcodeRequired" id="barcodeRequired">
+        <option hidden disabled selected>Choose one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
         <label htmlFor="description">Description</label>
-        <input required type="textarea" id='description' />
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
     </div>
     )
 }

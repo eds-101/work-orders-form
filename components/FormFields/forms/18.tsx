@@ -10,13 +10,10 @@ const FormExtra: React.FunctionComponent = () => {
             <input required type="text" id='timeFrame' />
 
             <label htmlFor="reasonForCount">Reason For Count</label>
-            <input required type="textarea" id='reasonForCount' />
-
-            <label htmlFor="reasonForCount">Reason For Count</label>
-            <input required type="textarea" id='reasonForCount' />
+            <textarea required rows={3} id='reasonForCount' />
 
             <label htmlFor="description">Description</label>
-            <input required type="textarea" id='description' />
+            <textarea required placeholder="Tell Us More..." rows={3} id='description' />
         </div>
     )
 }

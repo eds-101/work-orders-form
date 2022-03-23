@@ -9,7 +9,7 @@ export default [
     {order: 'Manual Shipment', index: 7},
     {order: 'Making up a Gift Pack', index: 8},
     {order: 'Manual Booking In', index: 9},
-    {order: 'Quality Check (Visual)', index: 10},
+    // {order: 'Quality Check (Visual)', index: 10},
     {order: 'Quality Check: Accessories / Ceramics', index: 11},
     {order: 'Quality Check: Garments', index: 12},
     {order: 'Steam, Fold and Repack', index: 13},

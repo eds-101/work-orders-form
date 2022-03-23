@@ -5,10 +5,9 @@ const FormExtra: React.FunctionComponent = () => {
       <div>
         <label htmlFor="orderNumber">Order Number</label>
         <input required type="text" id='orderNumber' />
-        <p>If multiple separate with commas</p>
         
         <label htmlFor="message">Message</label>
-        <input required type="textarea" id='message' />
+        <textarea required rows={3} id='message' />
 
         <label htmlFor="typeOfInsert">Type of Insert</label>
         <input required type="text" id='typeOfInsert' />
@@ -21,7 +20,7 @@ const FormExtra: React.FunctionComponent = () => {
         </select>
 
         <label htmlFor="description">Description</label>
-        <input required type="textarea" id='description' />
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
     </div>
     )
 }

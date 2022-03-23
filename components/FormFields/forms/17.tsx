@@ -8,16 +8,17 @@ const FormExtra: React.FunctionComponent = () => {
         <p>If multiple separate with commas</p>
 
         <label htmlFor="description">Description of Quality Control Check</label>
-        <input required type="textarea" id='description' />
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
         <label htmlFor="barcodeRequired">Do Items Need Measuring?</label>
-        <input required type="radio" id="yes" name="barcodeRequired" value="yes" />
-        <label htmlFor="yes">Yes</label><br />
-        <input type="radio" id="no" name="barcodeRequired" value="no" />
-        <label htmlFor="no">No</label><br />
+        <select required name="barcodeRequired" id="barcodeRequired">
+            <option hidden disabled selected>Choose one</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
 
         <label htmlFor="dimensions">What are the dimensions?</label>
-        <input required type="textarea" id='dimensions' />
+        <textarea required placeholder="Tell Us More..." rows={3} id='dimensions' />
     </div>
     )
 }

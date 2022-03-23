@@ -19,7 +19,7 @@ extraFieldsLookup = {
   7: <Extra.Fields7 />,
   8: <Extra.Fields8 />,
   9: <Extra.Fields9 />,
-  10: <Extra.Fields10 />,
+  // 10: <Extra.Fields10 />,
   11: <Extra.Fields11 />,
   12: <Extra.Fields12 />,
   13: <Extra.Fields13 />,
@@ -54,18 +54,6 @@ const IndexPage: NextPage = () => {
       setCustDetails(oldValues => ({...oldValues, [name]: value}))
     }
   }
-
-//   const sortBrands = (brandsArray: Array) => {
-
-//   }
-
-//   let userTestStatus: { id: number, name: string }[] = [
-//     { "id": 0, "name": "Available" },
-//     { "id": 1, "name": "Ready" },
-//     { "id": 2, "name": "Started" }
-// ];
-
-
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">

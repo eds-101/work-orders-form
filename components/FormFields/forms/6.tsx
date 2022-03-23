@@ -8,7 +8,7 @@ const FormExtra: React.FunctionComponent = () => {
         <p>If multiple separate with commas</p>
 
         <label htmlFor="description">Description</label>
-        <input required type="textarea" id='description' />
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
         <label htmlFor="totalUnits">Total Units</label>
         <input required type="number" min={1} id='totalUnits' />

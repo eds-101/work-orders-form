@@ -4,8 +4,8 @@ const FormExtra: React.FunctionComponent = () => {
     return (
     <div>
         <label htmlFor="SKU">SKU(s)</label>
-        <input required placeholder="Separate multiple SKUs with a comma" 
-        type="text" id='SKU' />
+        <input required type="text" id='SKU' />
+        <p>If multiple separate with commas</p>
         <label htmlFor="flatOrHanging">Flat or Hanging item?</label>
         <select required name="flatOrHanging" id="flatOrHanging">
           <option hidden disabled selected>Choose One...</option>
