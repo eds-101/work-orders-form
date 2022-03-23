@@ -38,7 +38,7 @@ const IndexPage: NextPage = () => {
   
   const handleWorkOrder = (value: String) => {
     const index = workOrders.filter((x: any) => x.order === value)[0].index
-    let component = extraFieldsLookup[index]
+    let component = extraFieldsLookup[String(index)]
     setExtraFields(component)
   }
 
