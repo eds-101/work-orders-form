@@ -13,7 +13,11 @@ const FormExtra: React.FunctionComponent = () => {
       <input required type="text" id='deliveryAddress' />
 
       <label htmlFor="preferredCourier">Preferred Courier</label>
-      <input required type="text" id='preferredCourier' />
+      <select required name="preferredCourier" id="preferredCourier">
+          <option hidden disabled selected></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
 
       <label htmlFor="deliveryType">Delivery Type</label>
       <select required name="deliveryType" id="deliveryType">

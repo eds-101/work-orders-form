@@ -41,20 +41,20 @@ const IndexPage: NextPage = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault() 
-    let quantityOfItems = 0
-    let quantityOfGiftSets = 0
-    let hourlyRate = 0
-    Array.prototype.forEach.call(e.target.elements, (element) => {
-      console.log(element.id, "  ", element.value);
-      if(element.id === "Arc Minute") {
-        hourlyRate = brands.filter(brand => {
-          brand.brandName === element.value
-        })[0].hourlyRate
-        quantityOfItems = element.value}
-      if(element.id === "quantityOfItems") {quantityOfItems = element.value}
-      if(element.id === "quantityOfGiftSets") {quantityOfGiftSets = element.value}
-    })
-    console.log("quantity of items: ", (quantityOfGiftSets + quantityOfItems), ",  ")
+    // let quantityOfItems = 0
+    // let quantityOfGiftSets = 0
+    // let hourlyRate = 0
+    // Array.prototype.forEach.call(e.target.elements, (element) => {
+    //   console.log(element.id, "  ", element.value);
+    //   if(element.id === "Arc Minute") {
+    //     hourlyRate = brands.filter(brand => {
+    //       brand.brandName === element.value
+    //     })[0].hourlyRate
+    //     quantityOfItems = element.value}
+    //   if(element.id === "quantityOfItems") {quantityOfItems = element.value}
+    //   if(element.id === "quantityOfGiftSets") {quantityOfGiftSets = element.value}
+    // })
+    // console.log("quantity of items: ", (quantityOfGiftSets + quantityOfItems), ",  ")
   }
 
 
