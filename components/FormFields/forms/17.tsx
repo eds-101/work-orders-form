@@ -1,6 +1,17 @@
 //Bespoke Quality Control
 const FormExtra: React.FunctionComponent = () => {
 
+    const onSelect: any = (e: any) => {
+        console.log(e.target.files)
+        console.log(e.target)
+        if (e.target.files.length > 5) {
+            console.log("2 many files")
+            alert("Only 5 files max accepted.");
+            e.preventDefault();
+            delete e.target
+        }
+    }
+    
     return (
         <div>
         <label htmlFor="SKUs">SKU(s)</label>
@@ -19,6 +30,9 @@ const FormExtra: React.FunctionComponent = () => {
 
         <label htmlFor="dimensions">What are the dimensions?</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='dimensions' />
+
+        <label htmlFor="uploadPics">Upload any attachments</label>
+        <input type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />
     </div>
     )
 }

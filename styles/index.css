@@ -5,16 +5,20 @@
 @tailwind utilities;
 
 @layer base {
-  input[type=text] {
-    @apply w-full p-2 bg-gray-900 rounded-md  border border-gray-700
+  input[type=text], input[type=tel] {
+    @apply w-full p-2 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=number] {
-    @apply w-1/5 p-2 bg-gray-900 rounded-md  border border-gray-700
+    @apply w-1/5 p-2 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=date] {
-    @apply  p-2 bg-gray-900 rounded-md  border border-gray-700
+    @apply  p-2 bg-white text-black rounded-md  border border-gray-700
+  }
+
+  input[type=file] {
+    @apply  p-2 bg-white text-black rounded-md  border border-gray-700
   }
 
   label {
@@ -22,11 +26,11 @@
   }
 
   select {
-    @apply w-full p-2 bg-black rounded-md  border border-gray-700;
+    @apply w-full p-2 bg-white text-black rounded-md  border border-gray-700;
   }
 
   textarea {
-    @apply overflow-auto w-full p-2 bg-gray-900 rounded-md  border border-gray-700
+    @apply overflow-auto w-full p-2 bg-white text-black rounded-md  border border-gray-700
   }
   
   h1 {

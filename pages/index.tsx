@@ -41,10 +41,23 @@ const IndexPage: NextPage = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault() 
+    let quantityOfItems = 0
+    let quantityOfGiftSets = 0
+    let hourlyRate = 0
     Array.prototype.forEach.call(e.target.elements, (element) => {
       console.log(element.id, "  ", element.value);
+      if(element.id === "Arc Minute") {
+        hourlyRate = brands.filter(brand => {
+          brand.brandName === element.value
+        })[0].hourlyRate
+        quantityOfItems = element.value}
+      if(element.id === "quantityOfItems") {quantityOfItems = element.value}
+      if(element.id === "quantityOfGiftSets") {quantityOfGiftSets = element.value}
     })
+    console.log("quantity of items: ", (quantityOfGiftSets + quantityOfItems), ",  ")
   }
+
+
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
@@ -59,10 +72,10 @@ const IndexPage: NextPage = () => {
                                 <h1 className="text-black text-center text-2xl">Submit Your Work Order</h1>
                             </div>
 
-                        <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" >  
+                        <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" onSubmit={handleSubmit}>  
                             <h1 className="text-black text-2xl">Enter Your Details</h1>
 
-                        <select required className="w-full p-2 bg-black rounded-md  border border-gray-700 "
+                        <select required className="w-full p-2 rounded-md border"
                         name="brand" id="brand">
                             <option hidden disabled selected>Brand Name</option>
                             {brands.sort(function(a,b){
@@ -70,22 +83,26 @@ const IndexPage: NextPage = () => {
                               if(a.brandName > b.brandName) { return 1; }
                               return 0;
                               }).map( 
-                                    ({brandName})  =>  <option value={brandName}>{brandName}</option>
+                                    ({brandName})  =>  <option key={brandName} value={brandName}>{brandName}</option>
                                 )
                             }
                         </select>
                                
-                        <input required className="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
+                        <input required className="w-full p-2 rounded-md placeholder-black border"
                          id='name' placeholder="Your Name" type="text" />
                         
-                        <input required className="w-full p-2 bg-gray-900 rounded-md  border border-gray-700"
+                        <input required className="w-full p-2 text-black placeholder-black rounded-md  border"
                          id='number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
-                        <select required className="w-full bg-black rounded-md  border border-gray-700"
+                        <select required className="w-full rounded-md  border"
                          name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
                           <option hidden disabled selected>Select One, Enter Details and Submit</option>
-                          {workOrders.map( ({order})  =>  <option value={order}>{order}</option>
+                          {workOrders.sort(function(a,b){
+                              if(a.order < b.order) { return -1; }
+                              if(a.order > b.order) { return 1; }
+                              return 0;
+                              }).map( ({order})  =>  <option value={order}>{order}</option>
                           )}
                         </select>
 
