@@ -1,10 +1,23 @@
+import { useState } from "react";
+
 //Bag and tag
 const FormExtra: React.FunctionComponent = () => {
+
+  const [SKUs, setSKUs] = useState<String[]>([])
+
+
+  const addSKU = (e: any) => {
+    console.log(e.target.value)
+    // setSKUs(prevSKUs => {
+    //   [...prevSKUs, e.target.value]
+    // })
+  }
+
 
     return (
     <div>
         <label htmlFor="SKU">SKU(s)</label>
-        <input required type="text" id='SKU' />
+
         <p>If multiple separate with commas</p>
         <label htmlFor="flatOrHanging">Flat or Hanging item?</label>
         <select required name="flatOrHanging" id="flatOrHanging">
