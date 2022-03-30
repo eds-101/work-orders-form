@@ -1,4 +1,6 @@
 //Bespoke Quality Control
+import InputMultipleStrings from "../../InputMultipleStrings"
+
 const FormExtra: React.FunctionComponent = () => {
 
     const onSelect: any = (e: any) => {
@@ -15,8 +17,7 @@ const FormExtra: React.FunctionComponent = () => {
     return (
         <div>
         <label htmlFor="SKUs">SKU(s)</label>
-        <input required type="text" id='SKUs' />
-        <p>If multiple separate with commas</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
 
         <label htmlFor="description">Description of Quality Control Check</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />

@@ -6,8 +6,7 @@ const FormExtra: React.FunctionComponent = () => {
     return (
     <div>
         <label htmlFor="SKU">SKU(s)</label>
-        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' />
-        <p>If multiple separate with commas</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
         <label htmlFor="flatOrHanging">Flat or Hanging item?</label>
         <select required name="flatOrHanging" id="flatOrHanging">
           <option hidden disabled selected>Choose One...</option>

@@ -1,11 +1,11 @@
 //Swing Tags
-const FormExtra: React.FunctionComponent = () => {
+import InputMultipleStrings from "../../InputMultipleStrings";
 
+const FormExtra: React.FunctionComponent = () => {
     return (
       <div>
         <label htmlFor="SKUs">SKU(s)</label>
-        <input required type="text" id='SKUs' />
-        <p>If multiple separate with commas</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
 
         <label htmlFor="barcodeRequired">Barcode Required</label>
         <select required name="barcodeRequired" id="barcodeRequired">

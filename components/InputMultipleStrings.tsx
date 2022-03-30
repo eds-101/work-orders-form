@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 type Props = {
-    inputId?: string,
-  buttonName?: string
+  inputId?: string,
+  buttonName?: string,
+  placeholderText?: string
 }
 
 const InputMultipleStrings: React.FunctionComponent<Props> = (
-{ inputId = 'SKUs', buttonName = 'Add SKU'}) => {
+{ inputId = 'SKUs', buttonName = 'Add SKU', placeholderText = 'Enter SKUs here'}) => {
     const [SKUfield, setSKUfield] = useState<String>("")
     const [SKUs, setSKUs] = useState<String[]>([])
 
@@ -28,11 +29,11 @@ const InputMultipleStrings: React.FunctionComponent<Props> = (
     return (
         <div className="max-w-lg mt-2">
             <div className="relative">
-                <input type="text" id={inputId} placeholder="Enter SKUs here"
+                <input className="mb-1" type="text" id={inputId} placeholder={placeholderText}
                 onChange={handleChange} 
                 />
                 <button id={inputId} 
-                className="w-1/4 bg-black hover:bg-amber-500 rounded-full font-bold text-white hover:text-black border border-gray-700 cursor-pointer"
+                className="w-1/4 p-1 bg-black hover:bg-white rounded-full font-bold text-white hover:text-black border-2 cursor-pointer"
                 type="button" onClick={() => addSKU(SKUfield)}>
                     {buttonName}
                     </button>

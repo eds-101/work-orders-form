@@ -1,4 +1,6 @@
 //Making Up A Gift Pack
+import InputMultipleStrings from "../../InputMultipleStrings"
+
 const FormExtra: React.FunctionComponent = () => {
   const onSelect: any = (e: any) => {
     console.log(e.target.files)
@@ -11,8 +13,7 @@ const FormExtra: React.FunctionComponent = () => {
     return (
       <div>
         <label htmlFor="SKUs">SKU(s) To Go In</label>
-        <input required type="text" id='SKUs' />
-        <p>If multiple separate with commas</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
 
         <label htmlFor="packagingInstructions">Packaging Instructions</label>
         <textarea required placeholder="Please include which boxes to use" rows={3} id='packagingInstructions' />
