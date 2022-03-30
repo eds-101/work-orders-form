@@ -41,12 +41,12 @@ const IndexPage: NextPage = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault() 
+    let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
+    console.log("id: ", id)
     Array.prototype.forEach.call(e.target.elements, (element) => {
       console.log(element.id, " = ", element.value);
     })
   }
-
-
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
@@ -64,7 +64,10 @@ const IndexPage: NextPage = () => {
                         <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" onSubmit={handleSubmit}>  
                             <h1 className="text-black text-2xl">Enter Your Details</h1>
 
-                        <select required className="w-full p-2 rounded-md border"
+                        <input required className="w-full p-2 rounded-md placeholder-black border"
+                          id='brand' placeholder="Enter Brand Name" type="text" />
+
+                        {/* <select required className="w-full p-2 rounded-md border"
                         name="brand" id="brand">
                             <option hidden disabled selected>Brand Name</option>
                             {brands.sort(function(a,b){
@@ -75,7 +78,7 @@ const IndexPage: NextPage = () => {
                                     ({brandName})  =>  <option key={brandName} value={brandName}>{brandName}</option>
                                 )
                             }
-                        </select>
+                        </select> */}
                                
                         <input required className="w-full p-2 rounded-md placeholder-black border"
                          id='name' placeholder="Your Name" type="text" />

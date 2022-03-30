@@ -7,7 +7,7 @@ type Props = {
 }
 
 const InputMultipleStrings: React.FunctionComponent<Props> = (
-{ inputId = 'SKUs', buttonName = 'Add SKU', placeholderText = 'Enter SKUs here'}) => {
+{ inputId = 'SKUs', buttonName = 'Add SKU', placeholderText = 'Enter SKUs here' }) => {
     const [SKUfield, setSKUfield] = useState<String>("")
     const [SKUs, setSKUs] = useState<String[]>([])
 
@@ -16,10 +16,15 @@ const InputMultipleStrings: React.FunctionComponent<Props> = (
     }
 
     const addSKU = (e: String) => {
+      clearSKUField()
       type State = String[]
       const skuId = "SKU: " + e
       const assignedValues: State = [skuId]
       setSKUs(SKUs.concat(assignedValues))
+    }
+
+    const clearSKUField = () => {
+        setSKUfield("")
     }
 
     const deleteSKU = (e: String) => {
