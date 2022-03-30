@@ -22,8 +22,10 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="parcelWeight">Weight of Parcel</label>
         <input required type="text" id='parcelWeight' />
 
-        <label htmlFor="parcelDimensions">Dimensions of Parcel (H, L, D)</label>
-        <input required type="text" id='parcelDimensions' />
+        <label htmlFor="hDimensions">Dimensions of Parcel (Height, Length, Depth)</label>
+        <input required type="text" id='Dimension-h' placeholder="H" /> <br />
+        <input required type="text" id='Dimension-l' placeholder="L" /> <br />
+        <input required type="text" id='Dimension-d' placeholder="D" />
 
         <label htmlFor="parcelQuantity">Quantity of Parcel / Pallete</label>
         <input required type="number" min={1} id='quantity' />

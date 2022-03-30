@@ -5,8 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  input[type=text][id^='Dimension']{
+    @apply w-2/5
+  }
+
   input[type=text], input[type=tel] {
-    @apply w-full p-2 bg-white text-black rounded-md  border border-gray-700
+    @apply w-full p-2 mb-1 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=number] {
