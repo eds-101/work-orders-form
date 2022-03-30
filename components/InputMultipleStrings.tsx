@@ -45,11 +45,11 @@ const InputMultipleStrings: React.FunctionComponent<Props> = (
                     <br />
                 <div className="bg-blue-100 inline-flex flex-wrap items-center text-sm rounded mt-2 overflow-hidden">
                     {SKUs.map(sku => {
-                        return <div>
+                        return <div key={String(sku)} >
                                     <span className=" leading-relaxed truncate max-w-xs px-1" x-text="tag">{sku}</span>
                                     <button className="w-6 h-8 inline-block align-middle text-gray-500 bg-blue-200 focus:outline-none"
                                     id={String(sku)} onClick={() => deleteSKU(sku)} key={String(sku)}>
-                                    <svg className="w-6 h-6 fill-current mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"/></svg>
+                                    <svg className="w-6 h-6 fill-current mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fillRule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"/></svg>
                                     </button>
                                 </div>
                     })

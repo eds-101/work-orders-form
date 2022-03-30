@@ -18,5 +18,5 @@ export default [
     {order: 'Shipping of Fabric Rolls', index: 16, minsPerUnit: 5},
     {order: 'Bespoke QC', index: 17, minsPerUnit: ["Flat Cost", 10]},
     {order: 'Stock Count', index: 18, minsPerUnit: "n/a"},
-    {order: 'Quality Check: Accessories', index: 19, minsPerUnit: 2.5},
+    // {order: 'Quality Check: Accessories', index: 19, minsPerUnit: 2.5},
 ]

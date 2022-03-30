@@ -22,10 +22,13 @@ const FormExtra: React.FunctionComponent = () => {
         <input required type="number" min={1} id='quantityOfItems' />
 
         <label htmlFor="quantityOfGiftSets">Quantity Of Gift Sets</label>
-        <input required type="number" min={1} id='quantityOfGiftSets' />
+        <input required type="number" min={1} id='quantity' />
 
         <label htmlFor="finalSKUs">Final Products SKU</label>
         <input required type="text" id='finalSKUs' />
+
+        <label htmlFor="description">Description</label>
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
         <label htmlFor="uploadPics">Upload Any Attachments</label>
         <input className="w-4/5" type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />

@@ -8,8 +8,6 @@ const FormExtra: React.FunctionComponent = () => {
         <input required type="text" id='SKU' />
         <label htmlFor="productDescription">Product Description</label>
         <textarea required placeholder="Enter Details..." id='productDescription' rows={3} />
-        <label htmlFor="quantity">Quantity</label>
-        <input required type="number" min={1} id='quantity' />
         <label htmlFor="packingRequirements">Packing Requirements</label>
         <input required type="text" id='packingRequirements' />
         <label htmlFor="deliveryAddress">Delivery Address</label>
@@ -17,7 +15,7 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="dateRequired">Date Required</label>
         <input required type="date" min={today} id='dateRequired' />
         <label htmlFor="totalUnits">Total Units</label>
-        <input required type="number" id='totalUnits' />
+        <input required type="number" min={1} id='totalUnits' />
     </div>
     )
 }

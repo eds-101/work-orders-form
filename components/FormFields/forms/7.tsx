@@ -25,8 +25,8 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="parcelDimensions">Dimensions of Parcel (H, L, D)</label>
         <input required type="text" id='parcelDimensions' />
 
-        <label htmlFor="parcelQuantity">Quantity of Parcel or Pallete</label>
-        <input required type="text" id='parcelQuantity' />
+        <label htmlFor="parcelQuantity">Quantity of Parcel / Pallete</label>
+        <input required type="number" min={1} id='quantity' />
 
         <label htmlFor="description">Description</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />

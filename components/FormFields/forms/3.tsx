@@ -12,9 +12,6 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="threadColour">Thread Colour</label>
         <input required type="text" id='threadColour' />
 
-        <label htmlFor="totalUnits">Total Units</label>
-        <input required type="number" min={1} id='totalUnits' />
-
         <label htmlFor="description">Description</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />
     </div>

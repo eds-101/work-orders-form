@@ -1,4 +1,6 @@
 //Quality Check: Accessories / Ceramics
+import InputMultipleStrings from "../../InputMultipleStrings";
+
 const FormExtra: React.FunctionComponent = () => {
 
     return (
@@ -7,11 +9,10 @@ const FormExtra: React.FunctionComponent = () => {
         <textarea required placeholder="Tell Us More..." rows={3} id="description" />
 
         <label htmlFor="SKUs">SKU(s)</label>
-        <input required type="text" id='SKU' />
-        <p>Seperate multiple SKUs with a comma</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
 
         <label htmlFor="totalUnits">Total Units</label>
-        <input required type="text" id='totalUnits' />
+        <input required type="number" min={1} id='totalUnits' />
 
     </div>
     )

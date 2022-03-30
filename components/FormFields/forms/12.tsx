@@ -1,4 +1,5 @@
 //Quality Check: Garments
+import InputMultipleStrings from "../../InputMultipleStrings"
 const FormExtra: React.FunctionComponent = () => {
  
   const onSelect: any = (e: any) => {
@@ -17,8 +18,7 @@ const FormExtra: React.FunctionComponent = () => {
         <textarea required placeholder="Tell Us More..." rows={3} id="description" />
 
         <label htmlFor="SKUs">SKU(s)</label>
-        <input required type="text" id='SKU' />
-        <p>Seperate multiple SKUs with a comma</p>
+        <InputMultipleStrings inputId='SKUs' buttonName='Add SKU' placeholderText='Type an SKU and click "Add SKU"'/>
 
         <label htmlFor="garmentSpecifics">Garment Specifics</label>
         <input required type="text" id='garmentSpecifics' />
