@@ -1,5 +1,6 @@
 //Making Up A Gift Pack
 import InputMultipleStrings from "../../InputMultipleStrings"
+import S3UploadwNativeSdk from "../../S3UploadwNativeSdk"
 
 const FormExtra: React.FunctionComponent = () => {
   const onSelect: any = (e: any) => {
@@ -30,8 +31,9 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="description">Description</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
-        <label htmlFor="uploadPics">Upload Any Attachments</label>
-        <input className="w-4/5" type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />
+        <label>Upload Any Pictures</label>
+        <input id='upload' type="file" multiple accept="image/*" />
+
     </div>
     )
 }

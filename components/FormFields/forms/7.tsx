@@ -3,6 +3,7 @@ const FormExtra: React.FunctionComponent = () => {
 
     return (
       <div>
+
         <label htmlFor="collectionAddress">Collection Address</label>
         <input required type="text" id='collectionAddress' />
 

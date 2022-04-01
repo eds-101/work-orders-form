@@ -9,6 +9,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "aws-sdk": "^2.1103.0",
     "isomorphic-unfetch": "3.0.0",
     "next": "^12.1.0",
     "react": "^16.12.0",
