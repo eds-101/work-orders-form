@@ -9,7 +9,7 @@
     @apply w-2/5
   }
 
-  input[type=text], input[type=tel] {
+  input[type=text], input[type=tel], input[type=email] {
     @apply w-full p-2 mb-1 bg-white text-black rounded-md  border border-gray-700
   }
 

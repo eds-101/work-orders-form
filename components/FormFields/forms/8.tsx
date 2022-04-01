@@ -31,10 +31,9 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="description">Description</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
-        <S3UploadwNativeSdk />
+        <label>Upload Any Pictures</label>
+        <input id='upload' type="file" multiple accept="image/*" />
 
-        <label htmlFor="uploadPics">Upload Any Attachments</label>
-        <input className="w-4/5" type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />
     </div>
     )
 }

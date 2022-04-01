@@ -5,6 +5,7 @@ import logoOrange from '../public/logoOrange.png'
 import Layout from '../components/Layout'
 import Extra from '../components/FormFields/module'
 import workOrders from '../components/FormFields/workOrders'
+import s3uploadFile from '../components/s3UploadFile'
 import brands from '../components/data/brands'
 
 let extraFieldsLookup: any
@@ -39,14 +40,28 @@ const IndexPage: NextPage = () => {
     setExtraFields(component)
   }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault() 
-    let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
-    console.log("id: ", id)
-    Array.prototype.forEach.call(e.target.elements, (element) => {
-      console.log(element.id, " = ", element.value);
-    })
-  }
+    const handleSubmit = (e: any) => {
+      e.preventDefault() 
+      let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
+      console.log("id: ", id)
+      let email : string
+      // console.log(e.target.elements)
+      Array.prototype.forEach.call(e.target.elements, (element) => {
+        if(element.id === "email") {email = element.value}
+        else if(element.id.includes("SKU:")) {console.log("sku: " + element.id)}
+        else if(element.id.includes("SKUs")) {null}
+        else if(element.id === "upload") {
+          interface FileObject {name: string}
+          [...element.files].forEach((file: FileObject) => {
+          console.log(file.name)
+          s3uploadFile(file, email)
+          })
+        }
+        else {
+          console.log(element.id, " = ", element.value);
+        }
+      })
+    }
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
@@ -61,7 +76,8 @@ const IndexPage: NextPage = () => {
                             <h1 className="text-black text-center text-2xl">Submit Your Work Order</h1>
                         </div>
 
-                        <form className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" onSubmit={handleSubmit}>  
+                        <form encType='multipart/form-data'
+                        className="orderAuth flex flex-col  space-y-5 pt-4 pb-10" onSubmit={handleSubmit}>  
                             <h1 className="text-black text-2xl">Enter Your Details</h1>
 
                         <input required className="w-full p-2 rounded-md placeholder-black border"
@@ -83,7 +99,10 @@ const IndexPage: NextPage = () => {
                         <input required className="w-full p-2 rounded-md placeholder-black border"
                          id='name' placeholder="Your Name" type="text" />
                         
-                        <input required className="w-full p-2 text-black placeholder-black rounded-md  border"
+                        <input className="w-full p-2 text-black placeholder-black rounded-md  border"
+                         id='email' placeholder="Email Address" type="email" />
+
+                        <input className="w-full p-2 text-black placeholder-black rounded-md  border"
                          id='number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
@@ -94,13 +113,13 @@ const IndexPage: NextPage = () => {
                               if(a.order < b.order) { return -1; }
                               if(a.order > b.order) { return 1; }
                               return 0;
-                              }).map( ({order})  =>  <option value={order}>{order}</option>
+                              }).map( ({order})  =>  <option key={order} value={order}>{order}</option>
                           )}
                         </select>
 
                         {extraFields}
                         
-                        <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white hover:text-black border border-gray-700 cursor-pointer"
+                        <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white border border-gray-700 cursor-pointer"
                             type="submit" />
 
                         </form>
