@@ -1,12 +1,11 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import logoOrange from '../public/logoOrange.png'
 import Layout from '../components/Layout'
 import Extra from '../components/FormFields/module'
-import workOrders from '../components/FormFields/workOrders'
 import s3uploadFile from '../components/s3UploadFile'
-import brands from '../components/data/brands'
+import { supabase } from '../api'
 
 let extraFieldsLookup: any
 extraFieldsLookup = {
@@ -20,7 +19,7 @@ extraFieldsLookup = {
   7: <Extra.Fields7 />,
   8: <Extra.Fields8 />,
   9: <Extra.Fields9 />,
-  // 10: <Extra.Fields10 />,
+  10: <Extra.Fields10 />,
   11: <Extra.Fields11 />,
   12: <Extra.Fields12 />,
   13: <Extra.Fields13 />,
@@ -28,24 +27,36 @@ extraFieldsLookup = {
   15: <Extra.Fields15 />,
   16: <Extra.Fields16 />,
   17: <Extra.Fields17 />,
-  18: <Extra.Fields18 />,
 }
 
 const IndexPage: NextPage = () => {
-  const [extraFields, setExtraFields] = useState("")
+  const [workOrdersList, setWorkOrdersList] = useState<Array<{name: string, id: number}> | null>([])
+  const [loading, setLoading] = useState(true)
+  const [extraFields, setExtraFields] = useState<String>("")
   
-  const handleWorkOrder = (value: String) => {
-    const index = workOrders.filter((x: any) => x.order === value)[0].index
-    let component = extraFieldsLookup[String(index)]
-    setExtraFields(component)
+  useEffect(() => {
+    fetchOrders()
+  }, [])
+
+  async function fetchOrders() {
+    const { data }: {data: Array<{name: string, id: number}> | null} = await supabase
+      .from('work_orders')
+      .select()
+      setWorkOrdersList(data)
+    setLoading(false)
   }
 
-    const handleSubmit = (e: any) => {
-      e.preventDefault() 
-      let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
-      console.log("id: ", id)
-      let email : string
-      // console.log(e.target.elements)
+  const handleWorkOrder = (value: String) => {
+    const component = extraFieldsLookup[String(value)]
+    setExtraFields(component)
+  }
+  
+  const handleSubmit = (e: any) => {
+    e.preventDefault() 
+    let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
+    console.log("id: ", id)
+    let email : string
+    // console.log(e.target.elements)
       Array.prototype.forEach.call(e.target.elements, (element) => {
         if(element.id === "email") {email = element.value}
         else if(element.id.includes("SKU:")) {console.log("sku: " + element.id)}
@@ -82,19 +93,6 @@ const IndexPage: NextPage = () => {
 
                         <input required className="w-full p-2 rounded-md placeholder-black border"
                           id='brand' placeholder="Enter Brand Name" type="text" />
-
-                        {/* <select required className="w-full p-2 rounded-md border"
-                        name="brand" id="brand">
-                            <option hidden disabled selected>Brand Name</option>
-                            {brands.sort(function(a,b){
-                              if(a.brandName < b.brandName) { return -1; }
-                              if(a.brandName > b.brandName) { return 1; }
-                              return 0;
-                              }).map( 
-                                    ({brandName})  =>  <option key={brandName} value={brandName}>{brandName}</option>
-                                )
-                            }
-                        </select> */}
                                
                         <input required className="w-full p-2 rounded-md placeholder-black border"
                          id='name' placeholder="Your Name" type="text" />
@@ -106,19 +104,21 @@ const IndexPage: NextPage = () => {
                          id='number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
+                        {loading ? <p className="text-2xl">Loading ...</p> : null}
+                        {workOrdersList ?
                         <select required className="w-full rounded-md  border"
                          name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
                           <option hidden disabled selected>Select One, Enter Details and Submit</option>
-                          {workOrders.sort(function(a,b){
-                              if(a.order < b.order) { return -1; }
-                              if(a.order > b.order) { return 1; }
+                          {workOrdersList.sort(function(a,b){
+                              if(a.name < b.name) { return -1; }
+                              if(a.name > b.name) { return 1; }
                               return 0;
-                              }).map( ({order})  =>  <option key={order} value={order}>{order}</option>
+                              }).map( ({name, id})  =>  <option key={id} value={id}>{name}</option>
                           )}
                         </select>
-
+                        : null
+                      }
                         {extraFields}
-                        
                         <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white border border-gray-700 cursor-pointer"
                             type="submit" />
 

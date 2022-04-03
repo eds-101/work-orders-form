@@ -1,28 +1,26 @@
-//Barcoding of Fabric Rolls
+//Shipping of Fabric Rolls
 const FormExtra: React.FunctionComponent = () => {
 
     return (
         <div>
-            <label htmlFor="description">Description</label>
-            <textarea required placeholder="Tell Us More..." rows={3} id='description' />
+        <label htmlFor="weight">Weight</label>
+        <input required type="text" id='weight' />
 
-            <label htmlFor="rollNeedMeasuring">Does Roll need measuring?</label>
-            <select required name="rollNeedMeasuring" id="rollNeedMeasuring">
-                <option hidden disabled selected>Choose one</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+        <label htmlFor="deliveryAddress">Delivery Address</label>
+        <input required type="text" id='deliveryAddress' />
 
-            <label htmlFor="prodNeedMintsoft">Does Product need creating in Mintsoft?</label>
-            <select required name="prodNeedMintsoft" id="prodNeedMintsoft">
-                <option hidden disabled selected>Choose one</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+        <label htmlFor="rollSize">Roll Length/Meterage</label>
+        <input required type="text" id='rollSize' />
 
-            <label htmlFor="totalUnits">Total Units</label>
-            <input required type="number" id='totalUnits' />
-        </div>
+        <label htmlFor="quantityOfRolls">Quantity of Rolls</label>
+        <input required type="number" min={1} id='quantity' />
+
+        <label htmlFor="SKU">SKU</label>
+        <input required type="text" id='SKU' />
+
+        <label htmlFor="description">Description</label>
+        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
+    </div>
     )
 }
 
