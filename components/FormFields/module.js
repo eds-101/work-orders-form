@@ -16,7 +16,6 @@ import Fields14 from "./forms/14"
 import Fields15 from "./forms/15"
 import Fields16 from "./forms/16"
 import Fields17 from "./forms/17"
-import Fields18 from "./forms/18"
 
 export default {
     Fields0,
@@ -37,5 +36,4 @@ export default {
     Fields15,
     Fields16,
     Fields17,
-    Fields18,
 }

@@ -1,16 +1,8 @@
 //Making Up A Gift Pack
 import InputMultipleStrings from "../../InputMultipleStrings"
-import S3UploadwNativeSdk from "../../S3UploadwNativeSdk"
 
 const FormExtra: React.FunctionComponent = () => {
-  const onSelect: any = (e: any) => {
-    console.log(e.target.files)
-    console.log(e.target)
-    if (e.target.files.length > 5) {
-        alert("Only 5 files accepted.");
-        e.preventDefault();
-    }
-}
+
     return (
       <div>
         <label htmlFor="SKUs">SKU(s) To Go In</label>

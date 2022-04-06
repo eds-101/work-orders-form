@@ -1,24 +1,28 @@
-//Rebagging
+//Barcoding of Fabric Rolls
 const FormExtra: React.FunctionComponent = () => {
 
     return (
-    <div>
-        <label htmlFor="SKU">SKU</label>
-        <input required type="text" id='SKU' />
+        <div>
+            <label htmlFor="description">Description</label>
+            <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
-        <label htmlFor="quantity">Quantity</label>
-        <input required type="number" min={1} id='quantity' />
+            <label htmlFor="rollNeedMeasuring">Does Roll need measuring?</label>
+            <select required name="rollNeedMeasuring" id="rollNeedMeasuring">
+                <option hidden disabled selected>Choose one</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
 
-        <label htmlFor="flatOrHanging">Flat or Hanging item?</label>
-        <select required name="flatOrHanging" id="flatOrHanging">
-          <option hidden disabled selected>Select</option>
-          <option value="Flat">Flat</option>
-          <option value="Hanging">Hanging</option>
-        </select>
+            <label htmlFor="prodNeedMintsoft">Does Product need creating in Mintsoft?</label>
+            <select required name="prodNeedMintsoft" id="prodNeedMintsoft">
+                <option hidden disabled selected>Choose one</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
 
-        <label htmlFor="description">Description</label>
-        <textarea required placeholder="Tell Us More..." rows={3} id='description' />
-    </div>
+            <label htmlFor="totalUnits">Total Units</label>
+            <input required type="number" id='totalUnits' />
+        </div>
     )
 }
 

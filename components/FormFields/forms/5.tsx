@@ -13,10 +13,10 @@ const FormExtra: React.FunctionComponent = () => {
         <input required type="text" id='typeOfInsert' />
 
         <label htmlFor="handOrPC">Handwritten or Computer Generated?</label>
-        <select required name="barcodeRequired" id="handOrPC">
+        <select required id="handOrPC">
           <option hidden disabled selected>Select One</option>
-          <option value="Yes">Handwritten</option>
-          <option value="No">Computer Generated</option>
+          <option value="Handwritten">Handwritten</option>
+          <option value="PC">Computer Generated</option>
         </select>
 
         <label htmlFor="description">Description</label>
