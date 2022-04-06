@@ -2,16 +2,6 @@
 import InputMultipleStrings from "../../InputMultipleStrings"
 const FormExtra: React.FunctionComponent = () => {
  
-  const onSelect: any = (e: any) => {
-    console.log(e.target.files)
-    console.log(e.target)
-    if (e.target.files.length > 5) {
-        console.log("2 many files")
-        alert("Only 5 files max accepted.");
-        e.preventDefault();
-        e.target.files = null
-    }
-  }
     return (
       <div>
         <label htmlFor="description">Description</label>
@@ -26,8 +16,8 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="totalUnits">Total Units</label>
         <input required type="number" id='totalUnits' />
 
-        <label htmlFor="uploadPics">Upload Any Attachments</label>
-        <input type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />
+        <label htmlFor="upload">Upload Any Attachments</label>
+        <input type="file" id="upload" multiple accept="image/*" />
     </div>
     )
 }

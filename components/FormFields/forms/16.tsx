@@ -22,8 +22,8 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="description">Description of Quality Control Check</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />
 
-        <label htmlFor="barcodeRequired">Do Items Need Measuring?</label>
-        <select required name="barcodeRequired" id="barcodeRequired">
+        <label htmlFor="itemNeedMeasuring">Do Items Need Measuring?</label>
+        <select required name="itemNeedMeasuring" id="itemNeedMeasuring">
             <option hidden disabled selected>Choose one</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -32,8 +32,8 @@ const FormExtra: React.FunctionComponent = () => {
         <label htmlFor="dimensions">What are the dimensions?</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='dimensions' />
 
-        <label htmlFor="uploadPics">Upload any attachments</label>
-        <input type="file" id="uploadPics" multiple accept="image/*" onChange={onSelect} />
+        <label htmlFor="upload">Upload any Images</label>
+        <input type="file" id="upload" multiple accept="image/*" onChange={onSelect} />
     </div>
     )
 }

@@ -16,7 +16,7 @@ const FormExtra: React.FunctionComponent = () => {
         <input required type="number" min={1} id='quantity' />
 
         <label htmlFor="SKU">SKU</label>
-        <input required type="text" id='SKU' />
+        <input required type="text" id='SKUs' />
 
         <label htmlFor="description">Description</label>
         <textarea required placeholder="Tell Us More..." rows={3} id='description' />

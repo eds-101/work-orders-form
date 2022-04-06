@@ -38,7 +38,7 @@ const IndexPage: NextPage = () => {
     fetchOrders()
   }, [])
 
-  async function fetchOrders() {
+  const fetchOrders = async() => {
     const { data }: {data: Array<{name: string, id: number}> | null} = await supabase
       .from('work_orders')
       .select()
@@ -51,27 +51,47 @@ const IndexPage: NextPage = () => {
     setExtraFields(component)
   }
   
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async(e: any) =>  {
     e.preventDefault() 
-    let id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
+    let insertData: any
+    let pics: string[] = []
+    let skus: string[] = []
+    let emailAd: string | undefined
+    const id = "TUP" + (String(Date.now() * Math.floor(Math.random() * 100)).slice(-7))
     console.log("id: ", id)
-    let email : string
-    // console.log(e.target.elements)
-      Array.prototype.forEach.call(e.target.elements, (element) => {
-        if(element.id === "email") {email = element.value}
-        else if(element.id.includes("SKU:")) {console.log("sku: " + element.id)}
-        else if(element.id.includes("SKUs")) {null}
-        else if(element.id === "upload") {
-          interface FileObject {name: string}
-          [...element.files].forEach((file: FileObject) => {
-          console.log(file.name)
-          s3uploadFile(file, email)
-          })
-        }
-        else {
-          console.log(element.id, " = ", element.value);
-        }
-      })
+    let trackingIdEntry = {trackingId: id}
+    insertData = {...insertData, ...trackingIdEntry}
+    interface Element {id?: string | undefined, value?: string | number | undefined, files?: [] | undefined}
+    Array.prototype.forEach.call(e.target.elements, (element: Element) => {
+      if(element.id && element.id.includes("SKU:")) {skus.push(element.id)}
+      else if(element.id === "brand") {
+        console.log(element.value)
+        let entry = {brand_entry: element.value}
+        insertData = {...insertData, ...entry}
+      }
+      else if(element.id === "quantity" || element.id === "totalUnits") { 
+        insertData["initial_units_or_quantity"] = element.value
+      }
+      else if(element.id && element.id.includes("SKUs")) {null}
+      else if(element.id === "upload") {
+        if (element.files) {
+          interface File {name: string}
+          [...element.files].forEach((file: File) => {
+            s3uploadFile(file, emailAd)
+            pics.push(`https://wmspics.s3.amazonaws.com/${emailAd}/${file.name}`)
+          })}
+      }
+      else {
+        if(element.id) {insertData[element.id] = element.value}
+      }
+    })
+    insertData["pics"] = pics
+    insertData["skus"] = skus
+    const { data, error } = await supabase
+      .from('order')
+      .insert(insertData)
+    console.log(data)
+    console.log(error)
     }
 
   return (
@@ -101,13 +121,13 @@ const IndexPage: NextPage = () => {
                          id='email' placeholder="Email Address" type="email" />
 
                         <input className="w-full p-2 text-black placeholder-black rounded-md  border"
-                         id='number' placeholder="Contact Number" type="tel" />
+                         id='phone_number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
                         {loading ? <p className="text-2xl">Loading ...</p> : null}
                         {workOrdersList ?
                         <select required className="w-full rounded-md  border"
-                         name="order" id="orderMenu" onChange={(e) => handleWorkOrder(e.target.value)}>
+                         name="order" id="work_order_id" onChange={(e) => handleWorkOrder(e.target.value)}>
                           <option hidden disabled selected>Select One, Enter Details and Submit</option>
                           {workOrdersList.sort(function(a,b){
                               if(a.name < b.name) { return -1; }
