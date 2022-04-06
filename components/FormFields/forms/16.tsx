@@ -30,7 +30,7 @@ const FormExtra: React.FunctionComponent = () => {
         </select>
 
         <label htmlFor="dimensions">What are the dimensions?</label>
-        <textarea required placeholder="Tell Us More..." rows={3} id='dimensions' />
+        <input required type="text"  placeholder="Tell Us More..." id='dimensions' />
 
         <label htmlFor="upload">Upload any Images</label>
         <input type="file" id="upload" multiple accept="image/*" onChange={onSelect} />

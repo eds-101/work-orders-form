@@ -10,19 +10,19 @@
   }
 
   input[type=text], input[type=tel], input[type=email] {
-    @apply w-full p-2 mb-1 bg-white text-black rounded-md  border border-gray-700
+    @apply w-full p-3 mb-1 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=number] {
-    @apply w-1/5 p-2 bg-white text-black rounded-md  border border-gray-700
+    @apply w-1/5 p-3 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=date] {
-    @apply  p-2 bg-white text-black rounded-md  border border-gray-700
+    @apply  p-3 bg-white text-black rounded-md  border border-gray-700
   }
 
   input[type=file] {
-    @apply  p-2 bg-white text-black rounded-md  border border-gray-700
+    @apply  p-3 bg-white text-black rounded-md  border border-gray-700
   }
 
   label {

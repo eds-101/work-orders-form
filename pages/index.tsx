@@ -63,7 +63,12 @@ const IndexPage: NextPage = () => {
     insertData = {...insertData, ...trackingIdEntry}
     interface Element {id?: string | undefined, value?: string | number | undefined, files?: [] | undefined}
     Array.prototype.forEach.call(e.target.elements, (element: Element) => {
-      if(element.id && element.id.includes("SKU:")) {skus.push(element.id)}
+      console.log(element.id, " ", element.value)
+      if(element.id && element.id === ("SKUs")) {skus.push(String(element.value))}
+      else if(element.id && element.id.includes("SKU:")) {
+        skus = skus.filter(sku => sku.includes("SKU:"))
+        skus.push(element.id)}
+      else if(element.id == "email") {emailAd = String(element.value)}
       else if(element.id === "brand") {
         console.log(element.value)
         let entry = {brand_entry: element.value}
@@ -72,7 +77,7 @@ const IndexPage: NextPage = () => {
       else if(element.id === "quantity" || element.id === "totalUnits") { 
         insertData["initial_units_or_quantity"] = element.value
       }
-      else if(element.id && element.id.includes("SKUs")) {null}
+      // else if(element.id && ) {null}
       else if(element.id === "upload") {
         if (element.files) {
           interface File {name: string}
@@ -82,7 +87,8 @@ const IndexPage: NextPage = () => {
           })}
       }
       else {
-        if(element.id) {insertData[element.id] = element.value}
+        if(element.id) {
+          insertData[element.id] = element.value}
       }
     })
     insertData["pics"] = pics
