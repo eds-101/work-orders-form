@@ -51,9 +51,14 @@ const IndexPage: NextPage = () => {
     setExtraFields(component)
   }
   
+  const getWorkOrderName = (id: number | undefined) => {
+    if(workOrdersList) {return workOrdersList.filter(order => order.id === Number(id))[0].name}
+  }
+
   const handleSubmit = async(e: any) =>  {
     e.preventDefault() 
     let insertData: any
+    let workOrderName: string | null
     let pics: string[] = []
     let skus: string[] = []
     let emailAd: string | undefined
@@ -61,7 +66,7 @@ const IndexPage: NextPage = () => {
     console.log("id: ", id)
     let trackingIdEntry = {trackingId: id}
     insertData = {...insertData, ...trackingIdEntry}
-    interface Element {id?: string | undefined, value?: string | number | undefined, files?: [] | undefined}
+    interface Element {id?: string | undefined, value?: any, files?: [] | undefined}
     Array.prototype.forEach.call(e.target.elements, (element: Element) => {
       console.log(element.id, " ", element.value)
       if(element.id && element.id === ("SKUs")) {skus.push(String(element.value))}
@@ -69,6 +74,12 @@ const IndexPage: NextPage = () => {
         skus = skus.filter(sku => sku.includes("SKU:"))
         skus.push(element.id)}
       else if(element.id == "email") {emailAd = String(element.value)}
+      else if(element.id === "work_order_id") {
+        workOrderName = getWorkOrderName(element.value)
+        console.log(workOrderName)
+        let entry = {work_order_name: workOrderName, work_order_id: element.value}
+        insertData = {...insertData, ...entry}
+      }
       else if(element.id === "brand") {
         console.log(element.value)
         let entry = {brand_entry: element.value}
@@ -77,7 +88,6 @@ const IndexPage: NextPage = () => {
       else if(element.id === "quantity" || element.id === "totalUnits") { 
         insertData["initial_units_or_quantity"] = element.value
       }
-      // else if(element.id && ) {null}
       else if(element.id === "upload") {
         if (element.files) {
           interface File {name: string}
@@ -87,8 +97,7 @@ const IndexPage: NextPage = () => {
           })}
       }
       else {
-        if(element.id) {
-          insertData[element.id] = element.value}
+        if(element.id) {insertData[element.id] = element.value}
       }
     })
     insertData["pics"] = pics
@@ -104,9 +113,7 @@ const IndexPage: NextPage = () => {
     <Layout title="Submit Your Work Order | Tu Pack">
         <body className="bg-black">
             <div className="flex min-h-screen min-w-full items-center justify-center">
-
                 <div className="bg-white border border-none p-6 rounded-2xl">
-
                     <div className="mx-4 sm:mx-14 md:mx-14 lg:mx-20  flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
                         <div className="w-4/5">
                             <Image src={logoOrange} layout="responsive"  alt="pic" />
@@ -147,13 +154,9 @@ const IndexPage: NextPage = () => {
                         {extraFields}
                         <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white border border-gray-700 cursor-pointer"
                             type="submit" />
-
                         </form>
                     </div>
-
-
                 </div>
-
             </div>
     </body>
 
