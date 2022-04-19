@@ -58,7 +58,6 @@ const IndexPage: NextPage = () => {
   const handleSubmit = async(e: any) =>  {
     e.preventDefault() 
     let insertData: any
-    let workOrderName: string | null
     let pics: string[] = []
     let skus: string[] = []
     let emailAd: string | undefined
