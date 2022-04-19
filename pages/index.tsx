@@ -75,7 +75,7 @@ const IndexPage: NextPage = () => {
         skus.push(element.id)}
       else if(element.id == "email") {emailAd = String(element.value)}
       else if(element.id === "work_order_id") {
-        workOrderName = getWorkOrderName(element.value)
+        let workOrderName = getWorkOrderName(element.value)
         console.log(workOrderName)
         let entry = {work_order_name: workOrderName, work_order_id: element.value}
         insertData = {...insertData, ...entry}
