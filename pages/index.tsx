@@ -1,11 +1,12 @@
 import { NextPage } from 'next'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import logoOrange from '../public/logoOrange.png'
 import Layout from '../components/Layout'
 import Extra from '../components/FormFields/module'
 import s3uploadFile from '../components/s3UploadFile'
 import { supabase } from '../api'
+import workOrders from '../data/workOrders'
 
 let extraFieldsLookup: any
 extraFieldsLookup = {
@@ -30,29 +31,15 @@ extraFieldsLookup = {
 }
 
 const IndexPage: NextPage = () => {
-  const [workOrdersList, setWorkOrdersList] = useState<Array<{name: string, id: number}> | null>([])
-  const [loading, setLoading] = useState(true)
   const [extraFields, setExtraFields] = useState<String>("")
   
-  useEffect(() => {
-    fetchOrders()
-  }, [])
-
-  const fetchOrders = async() => {
-    const { data }: {data: Array<{name: string, id: number}> | null} = await supabase
-      .from('work_orders')
-      .select()
-      setWorkOrdersList(data)
-    setLoading(false)
-  }
-
   const handleWorkOrder = (value: String) => {
     const component = extraFieldsLookup[String(value)]
     setExtraFields(component)
   }
   
   const getWorkOrderName = (id: number | undefined) => {
-    if(workOrdersList) {return workOrdersList.filter(order => order.id === Number(id))[0].name}
+    return workOrders.filter(order => order.id === Number(id))[0].name
   }
 
   const handleSubmit = async(e: any) =>  {
@@ -136,20 +123,16 @@ const IndexPage: NextPage = () => {
                          id='phone_number' placeholder="Contact Number" type="tel" />
 
                         <label htmlFor="description">Choose a Work Order</label>
-                        {loading ? <p className="text-2xl">Loading ...</p> : null}
-                        {workOrdersList ?
                         <select required className="w-full rounded-md  border"
                          name="order" id="work_order_id" onChange={(e) => handleWorkOrder(e.target.value)}>
                           <option hidden disabled selected>Select One, Enter Details and Submit</option>
-                          {workOrdersList.sort(function(a,b){
+                          {workOrders.sort(function(a,b){
                               if(a.name < b.name) { return -1; }
                               if(a.name > b.name) { return 1; }
                               return 0;
                               }).map( ({name, id})  =>  <option key={id} value={id}>{name}</option>
                           )}
                         </select>
-                        : null
-                      }
                         {extraFields}
                         <input className="w-full p-2 bg-black hover:bg-amber-500 rounded-full font-bold text-white border border-gray-700 cursor-pointer"
                             type="submit" />
