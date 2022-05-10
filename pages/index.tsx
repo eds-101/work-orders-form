@@ -74,6 +74,7 @@ const IndexPage: NextPage = () => {
           work_order_name: workOrderName,
           work_order_id: element.value,
         };
+
         insertData = {...insertData, ...entry};
       } else if (element.id === 'brand') {
         console.log(element.value);
