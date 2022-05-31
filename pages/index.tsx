@@ -47,15 +47,16 @@ const IndexPage: NextPage = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     let insertData: any;
+    let specificFields: any;
     let pics: string[] = [];
     let skus: string[] = [];
     let emailAd: string | undefined;
     // check if id already in db
-    const id =
+    const trackingId =
       'TUP' +
       String(Date.now() * Math.floor(Math.random() * 100)).slice(-7);
-    console.log('id: ', id);
-    let trackingIdEntry = { trackingId: id };
+    console.log('id: ', trackingId);
+    let trackingIdEntry = { trackingId: trackingId };
     insertData = { ...insertData, ...trackingIdEntry };
     Array.prototype.forEach.call(
       e.target.elements,
@@ -70,8 +71,10 @@ const IndexPage: NextPage = () => {
           insertData['work_order_id'] = element.value;
         } else if (element.id === 'initial_units_or_quantity') {
           insertData['initial_units_or_quantity'] = element.value;
-        } else if (element.id === 'brand_entry') {
-          console.log(element.value);
+        } else if (
+          element.id === 'brand_entry' ||
+          element.id === 'description'
+        ) {
           insertData[element.id] = element.value;
         }
         //contact data
@@ -94,18 +97,26 @@ const IndexPage: NextPage = () => {
           }
         } else {
           if (element.id) {
-            insertData[element.id] = element.value;
+            specificFields[element.id] = element.value;
           }
         }
       }
     );
-    insertData['pics'] = pics;
     insertData['skus'] = skus;
+    specificFields['pics'] = pics;
+
     const { data, error } = await supabase
       .from('order')
       .insert(insertData);
     console.log(data);
     console.log(error);
+
+    // specificFields['id'] = trackingId;
+    const { specFieldsdata, specFieldserror } = await supabase
+      .from('specific_fields')
+      .insert(specificFields);
+    console.log(specFieldsdata);
+    console.log(specFieldserror);
   };
 
   return (

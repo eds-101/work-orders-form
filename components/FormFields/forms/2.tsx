@@ -16,11 +16,11 @@ const FormExtra: React.FunctionComponent = () => {
       <label htmlFor="deliveryAddress">Delivery Address</label>
       <input required type="text" id="deliveryAddress" />
 
-      <label htmlFor="preferredCourier">Preferred Courier</label>
-      <select required name="preferredCourier" id="preferredCourier">
+      <label htmlFor="courierId">Preferred Courier</label>
+      <select required name="courierId" id="courierId">
         <option hidden disabled selected></option>
-        <option value="1">1</option>
-        <option value="2">2</option>
+        <option value="1">Courier 1</option>
+        <option value="2">Courier 2</option>
       </select>
 
       <label htmlFor="deliveryType">Delivery Type</label>
