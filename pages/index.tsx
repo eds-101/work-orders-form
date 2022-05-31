@@ -8,6 +8,12 @@ import s3uploadFile from '../components/s3UploadFile';
 import { supabase } from '../api';
 import workOrders from '../data/workOrders';
 
+interface Element {
+  id?: string | undefined;
+  value?: any;
+  files?: [] | undefined;
+}
+
 let extraFieldsLookup: any;
 extraFieldsLookup = {
   0: <Extra.Fields0 />,
@@ -38,11 +44,6 @@ const IndexPage: NextPage = () => {
     setExtraFields(component);
   };
 
-  const getWorkOrderName = (id: number | undefined) => {
-    return workOrders.filter((order) => order.id === Number(id))[0]
-      .name;
-  };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     let insertData: any;
@@ -56,11 +57,6 @@ const IndexPage: NextPage = () => {
     console.log('id: ', id);
     let trackingIdEntry = { trackingId: id };
     insertData = { ...insertData, ...trackingIdEntry };
-    interface Element {
-      id?: string | undefined;
-      value?: any;
-      files?: [] | undefined;
-    }
     Array.prototype.forEach.call(
       e.target.elements,
       (element: Element) => {
@@ -70,25 +66,20 @@ const IndexPage: NextPage = () => {
         } else if (element.id && element.id.includes('SKU:')) {
           skus = skus.filter((sku) => sku.includes('SKU:'));
           skus.push(element.id);
-        } else if (element.id == 'email') {
-          emailAd = String(element.value);
         } else if (element.id === 'work_order_id') {
-          let workOrderName = getWorkOrderName(element.value);
-          console.log(workOrderName);
-          let entry = {
-            work_order_name: workOrderName,
-            work_order_id: element.value,
-          };
-          insertData = { ...insertData, ...entry };
-        } else if (element.id === 'brand') {
-          console.log(element.value);
-          let entry = { brand_entry: element.value };
-          insertData = { ...insertData, ...entry };
-        } else if (
-          element.id === 'quantity' ||
-          element.id === 'initial_units_or_quantity'
-        ) {
+          insertData['work_order_id'] = element.value;
+        } else if (element.id === 'initial_units_or_quantity') {
           insertData['initial_units_or_quantity'] = element.value;
+        } else if (element.id === 'brand_entry') {
+          console.log(element.value);
+          insertData[element.id] = element.value;
+        }
+        //contact data
+        else if (element.id == 'email') {
+          insertData[element.id] = element.value;
+          emailAd = String(element.value);
+        } else if (element.id == 'name' || element.id == 'number') {
+          insertData[element.id] = element.value;
         } else if (element.id === 'upload') {
           if (element.files) {
             interface File {
@@ -146,7 +137,7 @@ const IndexPage: NextPage = () => {
                 <input
                   required
                   className="w-full p-2 rounded-md placeholder-black border"
-                  id="brand"
+                  id="brand_entry"
                   placeholder="Enter Brand Name"
                   type="text"
                 />
