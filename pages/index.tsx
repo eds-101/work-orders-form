@@ -5,7 +5,9 @@ import logoOrange from '../public/logoOrange.png';
 import Layout from '../components/Layout';
 import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
+// import { insertData } from '../components/insertData';
 import { supabase } from '../api';
+
 import workOrders from '../data/workOrders';
 
 interface Element {
@@ -36,6 +38,15 @@ extraFieldsLookup = {
   17: <Extra.Fields17 />,
 };
 
+const dataUpload = async (dataFields: any, refTable: any) => {
+  const { data, error } = await supabase
+    .from(refTable)
+    .insert(dataFields);
+  console.log(data);
+  console.log(error);
+  return data;
+};
+
 const IndexPage: NextPage = () => {
   const [extraFields, setExtraFields] = useState<String>('');
 
@@ -56,7 +67,7 @@ const IndexPage: NextPage = () => {
       'TUP' +
       String(Date.now() * Math.floor(Math.random() * 100)).slice(-7);
     console.log('id: ', trackingId);
-    let trackingIdEntry = { trackingId: trackingId };
+    let trackingIdEntry = { tracking_id: trackingId };
     insertData = { ...insertData, ...trackingIdEntry };
     Array.prototype.forEach.call(
       e.target.elements,
@@ -97,26 +108,34 @@ const IndexPage: NextPage = () => {
           }
         } else {
           if (element.id) {
-            specificFields[element.id] = element.value;
+            console.log(
+              'specific field: ',
+              element.value,
+              ' ',
+              element.id
+            );
+            console.log(element.value);
+            let entryObj = { [element.id]: element.value };
+            specificFields = { ...specificFields, ...entryObj };
           }
         }
       }
     );
     insertData['skus'] = skus;
-    specificFields['pics'] = pics;
+    pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
-    const { data, error } = await supabase
-      .from('order')
-      .insert(insertData);
-    console.log(data);
-    console.log(error);
-
-    // specificFields['id'] = trackingId;
-    const { specFieldsdata, specFieldserror } = await supabase
-      .from('specific_fields')
-      .insert(specificFields);
-    console.log(specFieldsdata);
-    console.log(specFieldserror);
+    let primaryData: any;
+    primaryData = await dataUpload(insertData, 'order');
+    const idSpecificFields = {
+      order_id: primaryData[0].id,
+    };
+    specificFields = { ...specificFields, ...idSpecificFields };
+    console.log(specificFields);
+    const extraData = await dataUpload(
+      specificFields,
+      'specific_fields'
+    );
+    console.log(extraData);
   };
 
   return (
@@ -170,7 +189,7 @@ const IndexPage: NextPage = () => {
 
                 <input
                   className="w-full p-2 text-black placeholder-black rounded-md  border"
-                  id="phone_number"
+                  id="number"
                   placeholder="Contact Number"
                   type="tel"
                 />
