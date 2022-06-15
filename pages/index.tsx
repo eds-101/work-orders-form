@@ -140,9 +140,9 @@ const IndexPage: NextPage = () => {
 
   return (
     <Layout title="Submit Your Work Order | Tu Pack">
-      <body className="bg-black">
+      <body className="bg-white">
         <div className="flex min-h-screen min-w-full items-center justify-center">
-          <div className="bg-white border border-none p-6 rounded-2xl">
+          <div className="bg-yellow-100 border border-none p-6 rounded-2xl">
             <div className="mx-4 sm:mx-14 md:mx-14 lg:mx-20  flex items-center space-y-4 py-16 font-semibold text-gray-500 flex-col">
               <div className="w-4/5">
                 <Image
