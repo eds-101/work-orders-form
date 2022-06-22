@@ -14,8 +14,8 @@ const FormExtra: React.FunctionComponent = () => {
       <label htmlFor="barcodeRequired">Barcode Required</label>
       <select required name="barcodeRequired" id="barcodeRequired">
         <option hidden disabled selected></option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value={'true'}>Yes</option>
+        <option value={'false'}>No</option>
       </select>
 
       <label htmlFor="description">Description</label>

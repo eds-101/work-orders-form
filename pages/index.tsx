@@ -43,7 +43,9 @@ const dataUpload = async (dataFields: any, refTable: any) => {
     .from(refTable)
     .insert(dataFields);
   console.log(data);
-  console.log(error);
+  if (error) {
+    console.log(error);
+  }
   return data;
 };
 
@@ -72,14 +74,14 @@ const IndexPage: NextPage = () => {
     Array.prototype.forEach.call(
       e.target.elements,
       (element: Element) => {
-        console.log(element.id, ' ', element.value);
+        // console.log(element.id, ' ', element.value);
         if (element.id && element.id === 'SKUs') {
           skus.push(String(element.value));
         } else if (element.id && element.id.includes('SKU:')) {
           skus = skus.filter((sku) => sku.includes('SKU:'));
           skus.push(element.id);
-        } else if (element.id === 'work_order_id') {
-          insertData['work_order_id'] = element.value;
+        } else if (element.id === 'work_task_id') {
+          insertData['work_task_id'] = element.value;
         } else if (element.id === 'initial_units_or_quantity') {
           insertData['initial_units_or_quantity'] = element.value;
         } else if (
@@ -108,34 +110,35 @@ const IndexPage: NextPage = () => {
           }
         } else {
           if (element.id) {
-            console.log(
-              'specific field: ',
-              element.value,
-              ' ',
-              element.id
-            );
-            console.log(element.value);
+            // console.log(
+            //   'specific field: ',
+            //   element.value,
+            //   ' ',
+            //   element.id
+            // );
+            // console.log(element.value);
             let entryObj = { [element.id]: element.value };
             specificFields = { ...specificFields, ...entryObj };
           }
         }
       }
     );
-    insertData['skus'] = skus;
     pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
+    console.log(primaryData);
     const idSpecificFields = {
       order_id: primaryData[0].id,
+      skus: skus,
     };
     specificFields = { ...specificFields, ...idSpecificFields };
-    console.log(specificFields);
     const extraData = await dataUpload(
       specificFields,
       'specific_fields'
     );
     console.log(extraData);
+    alert('Form submitted successfully');
   };
 
   return (
@@ -201,7 +204,7 @@ const IndexPage: NextPage = () => {
                   required
                   className="w-full rounded-md  border"
                   name="order"
-                  id="work_order_id"
+                  id="work_task_id"
                   onChange={(e) => handleWorkOrder(e.target.value)}
                 >
                   <option hidden disabled selected>
