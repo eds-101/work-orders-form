@@ -9,6 +9,7 @@ import s3uploadFile from '../components/s3UploadFile';
 import { supabase } from '../api';
 
 import workOrders from '../data/workOrders';
+import Router from 'next/router';
 
 interface Element {
   id?: string | undefined;
@@ -45,6 +46,9 @@ const dataUpload = async (dataFields: any, refTable: any) => {
   console.log(data);
   if (error) {
     console.log(error);
+    alert(
+      'Something went wrong, please check your fields and try again'
+    );
   }
   return data;
 };
@@ -127,9 +131,10 @@ const IndexPage: NextPage = () => {
 
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
+    const order_id = primaryData[0].id;
     console.log(primaryData);
     const idSpecificFields = {
-      order_id: primaryData[0].id,
+      order_id: order_id,
       skus: skus,
     };
     specificFields = { ...specificFields, ...idSpecificFields };
@@ -139,6 +144,9 @@ const IndexPage: NextPage = () => {
     );
     console.log(extraData);
     alert('Form submitted successfully');
+    Router.push({
+      pathname: `/submitted/${order_id}`,
+    });
   };
 
   return (
