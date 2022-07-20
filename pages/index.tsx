@@ -68,13 +68,17 @@ const IndexPage: NextPage = () => {
         return res.concat(` ${key} : ${formData[key]}, `);
     }, "");
 
+    const orderType = workOrders.filter(order => {
+      return order.id.toString() === primaryData.work_task_id;
+    })[0].name;
+
     const data = {
       "request": {
         "requester": {
             "name": primaryData['name'],
             "email": primaryData['email']
         },
-        "subject": `New Order: ${primaryData['tracking_id']} `,
+        "subject": `New Order: ${orderType} - ${primaryData['tracking_id']}`,
         "comment": {
             "body": comment
         }
@@ -167,6 +171,10 @@ const IndexPage: NextPage = () => {
     );
     pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
+    // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
+    const zendeskData = await submitZendeskTicket(insertData, specificFields);
+    insertData = { ...insertData, zendesk_id: zendeskData.request.id }
+
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
     const order_id = primaryData[0].id;
@@ -181,9 +189,6 @@ const IndexPage: NextPage = () => {
       'specific_fields'
     );
     console.log(extraData);
-
-    // Submit Zendesk Ticket
-    await submitZendeskTicket(insertData, specificFields);
 
     alert('Form submitted successfully');
     Router.push({
