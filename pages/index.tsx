@@ -99,7 +99,8 @@ const IndexPage: NextPage = () => {
       );
       return await response.json();
     } catch (error) {
-      return error;
+      console.log(error)
+      return null;
     }
   };
 
