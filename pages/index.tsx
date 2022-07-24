@@ -7,8 +7,8 @@ import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
 // import { insertData } from '../components/insertData';
 import { supabase } from '../api';
-
 import workOrders from '../data/workOrders';
+import Router from 'next/router';
 
 interface Element {
   id?: string | undefined;
@@ -127,9 +127,10 @@ const IndexPage: NextPage = () => {
 
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
+    const orderId = primaryData[0].id;
     console.log(primaryData);
     const idSpecificFields = {
-      order_id: primaryData[0].id,
+      order_id: orderId,
       skus: skus,
     };
     specificFields = { ...specificFields, ...idSpecificFields };
@@ -139,6 +140,9 @@ const IndexPage: NextPage = () => {
     );
     console.log(extraData);
     alert('Form submitted successfully');
+    Router.push({
+      pathname: `/submitted/${orderId}`,
+    });
   };
 
   return (
