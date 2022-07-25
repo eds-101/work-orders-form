@@ -23,7 +23,7 @@ const FinishedPage: NextPage = (props) => {
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
               <div className="md:pr-12">
                 <div className="text-center inline-flex items-center justify-center w-24 h-24 mb-1 mt-8">
-                  <img src={logoOrange} alt="logo" />
+                  <img src={logoOrange.src} alt="logo" />
                 </div>
                 <h3 className="text-5xl font-semibold">
                   Work Order Submitted
