@@ -7,7 +7,6 @@ import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
 import { dataUpload } from '../api/dataUpload';
 import { submitZendeskTicket } from '../api/submitZendeskTicket';
-
 import workOrders from '../data/workOrders';
 import Router from 'next/router';
 
@@ -128,10 +127,10 @@ const IndexPage: NextPage = () => {
 
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
-    const order_id = primaryData[0].id;
+    const orderId = primaryData[0].id;
     console.log(primaryData);
     const idSpecificFields = {
-      order_id: order_id,
+      order_id: orderId,
       skus: skus,
     };
     specificFields = { ...specificFields, ...idSpecificFields };
@@ -143,7 +142,7 @@ const IndexPage: NextPage = () => {
 
     alert('Form submitted successfully');
     Router.push({
-      pathname: `/submitted/${order_id}`,
+      pathname: `/submitted/${orderId}`,
     });
   };
 
