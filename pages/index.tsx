@@ -5,8 +5,8 @@ import logoOrange from '../public/logoOrange.png';
 import Layout from '../components/Layout';
 import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
-// import { insertData } from '../components/insertData';
-import { supabase } from '../api';
+import { dataUpload } from '../api/dataUpload';
+import { submitZendeskTicket } from '../api/submitZendeskTicket';
 import workOrders from '../data/workOrders';
 import Router from 'next/router';
 
@@ -36,17 +36,6 @@ extraFieldsLookup = {
   15: <Extra.Fields15 />,
   16: <Extra.Fields16 />,
   17: <Extra.Fields17 />,
-};
-
-const dataUpload = async (dataFields: any, refTable: any) => {
-  const { data, error } = await supabase
-    .from(refTable)
-    .insert(dataFields);
-  console.log(data);
-  if (error) {
-    console.log(error);
-  }
-  return data;
 };
 
 const IndexPage: NextPage = () => {
@@ -125,6 +114,17 @@ const IndexPage: NextPage = () => {
     );
     pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
+    // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
+    const zendeskData = await submitZendeskTicket(
+      insertData,
+      specificFields,
+      workOrders
+    );
+    insertData = {
+      ...insertData,
+      zendesk_id: zendeskData.request.id,
+    };
+
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
     const orderId = primaryData[0].id;
@@ -139,6 +139,7 @@ const IndexPage: NextPage = () => {
       'specific_fields'
     );
     console.log(extraData);
+
     alert('Form submitted successfully');
     Router.push({
       pathname: `/submitted/${orderId}`,
