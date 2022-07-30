@@ -7,6 +7,7 @@ import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
 // import { insertData } from '../components/insertData';
 import { supabase } from '../api';
+import { submitZendeskTicket } from '../api/submitZendeskTicket';
 
 import workOrders from '../data/workOrders';
 import Router from 'next/router';
@@ -59,49 +60,6 @@ const IndexPage: NextPage = () => {
   const handleWorkOrder = (value: String) => {
     const component = extraFieldsLookup[String(value)];
     setExtraFields(component);
-  };
-
-  const submitZendeskTicket = async (primaryData: any, extraFields: any) => {
-    const subdomain = process.env.NEXT_PUBLIC_ZENDESK_SUBDOMAIN;
-    const formData = {...primaryData, ...extraFields}
-    const comment = Object.keys(formData).reduce(function(res, key) {
-        return res.concat(` ${key} : ${formData[key]}, `);
-    }, "");
-
-    const orderType = workOrders.filter(order => {
-      return order.id.toString() === primaryData.work_task_id;
-    })[0].name;
-
-    const data = {
-      "request": {
-        "requester": {
-            "name": primaryData['name'],
-            "email": primaryData['email']
-        },
-        "subject": `New Order: ${orderType} - ${primaryData['tracking_id']}`,
-        "comment": {
-            "body": comment
-        }
-      }
-    }
-
-    try {
-      const headers = {
-        "Content-Type": "application/json"
-      };
-      const response = await fetch(
-        `https://${subdomain}.zendesk.com/api/v2/requests.json`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers
-        }
-      );
-      return await response.json();
-    } catch (error) {
-      console.log(error)
-      return null;
-    }
   };
 
   const handleSubmit = async (e: any) => {
@@ -173,8 +131,15 @@ const IndexPage: NextPage = () => {
     pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
     // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
-    const zendeskData = await submitZendeskTicket(insertData, specificFields);
-    insertData = { ...insertData, zendesk_id: zendeskData.request.id }
+    const zendeskData = await submitZendeskTicket(
+      insertData,
+      specificFields,
+      workOrders
+    );
+    insertData = {
+      ...insertData,
+      zendesk_id: zendeskData.request.id,
+    };
 
     let primaryData: any;
     primaryData = await dataUpload(insertData, 'order');
