@@ -5,8 +5,7 @@ import logoOrange from '../public/logoOrange.png';
 import Layout from '../components/Layout';
 import Extra from '../components/FormFields/module';
 import s3uploadFile from '../components/s3UploadFile';
-// import { insertData } from '../components/insertData';
-import { supabase } from '../api';
+import { dataUpload } from '../api/dataUpload';
 import { submitZendeskTicket } from '../api/submitZendeskTicket';
 
 import workOrders from '../data/workOrders';
@@ -38,20 +37,6 @@ extraFieldsLookup = {
   15: <Extra.Fields15 />,
   16: <Extra.Fields16 />,
   17: <Extra.Fields17 />,
-};
-
-const dataUpload = async (dataFields: any, refTable: any) => {
-  const { data, error } = await supabase
-    .from(refTable)
-    .insert(dataFields);
-  console.log(data);
-  if (error) {
-    console.log(error);
-    alert(
-      'Something went wrong, please check your fields and try again'
-    );
-  }
-  return data;
 };
 
 const IndexPage: NextPage = () => {

@@ -1,0 +1,57 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.19/libexec/bin/yarn.js
+
+PATH: 
+  /Users/eds/.rvm/gems/ruby-2.7.0/bin:/Users/eds/.rvm/gems/ruby-2.7.0@global/bin:/Users/eds/.rvm/rubies/ruby-2.7.0/bin:/Users/eds/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/ImageMagick/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/eds/.rvm/gems/ruby-2.7.0/bin:/Users/eds/.rvm/gems/ruby-2.7.0@global/bin:/Users/eds/.rvm/rubies/ruby-2.7.0/bin:/Users/eds/bin:/Users/eds/.rvm/bin:/Users/eds/.rvm/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.13.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, open '/Users/eds/Library/Caches/Yarn/v6/npm-@next-swc-darwin-x64-12.2.2-12be2f58e676fccff3d48a62921b9927ed295133-integrity/node_modules/@next/swc-darwin-x64/.yarn-metadata.json'
+
+npm manifest: 
+  {
+    "name": "work-orders",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "next",
+      "build": "next build",
+      "start": "next start",
+      "stage": "yarn build; yarn start",
+      "type-check": "tsc"
+    },
+    "dependencies": {
+      "@sendgrid/mail": "^7.7.0",
+      "@supabase/supabase-js": "^1.33.2",
+      "aws-sdk": "^2.1103.0",
+      "fs": "^0.0.1-security",
+      "isomorphic-unfetch": "3.0.0",
+      "next": "^12.1.0",
+      "node-zendesk": "^2.2.0",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0"
+    },
+    "devDependencies": {
+      "@fullhuman/postcss-purgecss": "^2.0.5",
+      "@types/node": "^12.12.21",
+      "@types/react": "^16.9.16",
+      "@types/react-dom": "^16.9.4",
+      "postcss-preset-env": "^6.7.0",
+      "tailwindcss": "^1.1.4",
+      "typescript": "^4.6.2"
+    },
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
