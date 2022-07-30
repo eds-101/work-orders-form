@@ -140,7 +140,6 @@ const IndexPage: NextPage = () => {
     );
     console.log(extraData);
 
-    alert('Form submitted successfully');
     Router.push({
       pathname: `/submitted/${orderId}`,
     });
