@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import { supabaseClient } from '../../lib/client';
 import logoOrange from '../../public/logoOrange.png';
 
-const FinishedPage: NextPage = (props) => {
+const FinishedPage: NextPage = (props: any) => {
   const { data } = props;
 
   return (
