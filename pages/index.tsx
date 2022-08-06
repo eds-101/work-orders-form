@@ -15,6 +15,9 @@ interface Element {
   value?: any;
   files?: [] | undefined;
 }
+interface File {
+  name: string;
+}
 
 let extraFieldsLookup: any;
 extraFieldsLookup = {
@@ -86,15 +89,19 @@ const IndexPage: NextPage = () => {
         } else if (element.id == 'name' || element.id == 'number') {
           insertData[element.id] = element.value;
         } else if (element.id === 'upload') {
+          //
           if (element.files) {
-            interface File {
-              name: string;
-            }
             [...element.files].forEach((file: File) => {
-              s3uploadFile(file, emailAd);
-              pics.push(
-                `https://wmspics.s3.amazonaws.com/${emailAd}/${file.name}`
-              );
+              try {
+                s3uploadFile(file, emailAd);
+                pics.push(
+                  // move to process .env
+                  `http://tp-buckets.s3-website.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
+                );
+              } catch (error) {
+                alert('Problem uploading images - please try again.');
+                console.log(error);
+              }
             });
           }
         } else {
@@ -114,35 +121,41 @@ const IndexPage: NextPage = () => {
     );
     pics.length > 0 ? (specificFields['pics'] = pics) : null;
 
-    // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
-    const zendeskData = await submitZendeskTicket(
-      insertData,
-      specificFields,
-      workOrders
-    );
-    insertData = {
-      ...insertData,
-      zendesk_id: zendeskData.request.id,
-    };
+    try {
+      // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
+      const zendeskData = await submitZendeskTicket(
+        insertData,
+        specificFields,
+        workOrders
+      );
+      console.log(zendeskData);
+      insertData = {
+        ...insertData,
+        zendesk_id: zendeskData.request.id,
+      };
 
-    let primaryData: any;
-    primaryData = await dataUpload(insertData, 'order');
-    const orderId = primaryData[0].id;
-    console.log(primaryData);
-    const idSpecificFields = {
-      order_id: orderId,
-      skus: skus,
-    };
-    specificFields = { ...specificFields, ...idSpecificFields };
-    const extraData = await dataUpload(
-      specificFields,
-      'specific_fields'
-    );
-    console.log(extraData);
+      let primaryData: any;
+      primaryData = await dataUpload(insertData, 'order');
+      const orderId = primaryData[0].id;
+      console.log(primaryData);
+      const idSpecificFields = {
+        order_id: orderId,
+        skus: skus,
+      };
+      specificFields = { ...specificFields, ...idSpecificFields };
+      const extraData = await dataUpload(
+        specificFields,
+        'specific_fields'
+      );
+      console.log(extraData);
 
-    Router.push({
-      pathname: `/submitted/${orderId}`,
-    });
+      Router.push({
+        pathname: `/submitted/${orderId}`,
+      });
+    } catch (error) {
+      alert('Problem submitting form - please try again.');
+      console.log(error);
+    }
   };
 
   return (
