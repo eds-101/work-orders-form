@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { supabaseClient } from '../../lib/client';
 import logoOrange from '../../public/logoOrange.png';
@@ -29,16 +30,16 @@ const FinishedPage: NextPage = (props: any) => {
                   Work Order Submitted
                 </h3>
                 <h3>Order Number: {data.tracking_id}</h3>
-                <strong>Click here for link to tracker</strong>
+                <strong>
+                  <Link href={'/'}>
+                    Click here to go back to the Homepage
+                  </Link>
+                </strong>
                 {/* // link to tracker homepage */}
                 <p className="mt-4 leading-relaxed text-2xl font-semibold">
-                  Thanks for submitting your order, email confirmation
-                  has been sent.
-                </p>
-                <p className="mt-4 leading-relaxed text-2xl font-semibold">
-                  Please note your Order Number below which you use to
-                  login into the tracker. It's also been emailed to
-                  you.
+                  Thanks for submitting your order, please check your
+                  email for confirmation along with your related
+                  Zendesk Ticket.
                 </p>
               </div>
             </div>
