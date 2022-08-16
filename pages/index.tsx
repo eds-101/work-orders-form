@@ -95,12 +95,11 @@ const IndexPage: NextPage = () => {
               try {
                 s3uploadFile(file, emailAd);
                 pics.push(
-                  // move to process .env
-                  `http://tp-buckets.s3-website.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
+                  `http://custs.s3-website.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
                 );
               } catch (error) {
-                alert('Problem uploading images - please try again.');
                 console.log(error);
+                throw new Error('Error uploading Image');
               }
             });
           }
