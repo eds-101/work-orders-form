@@ -4,7 +4,7 @@ export default [
   { name: 'Arranging a courier collection and delivery', id: 2 },
   { name: 'Sewing', id: 3 },
   { name: 'Swing Tags', id: 4 },
-  { name: 'name Personalisation', id: 5 },
+  { name: 'Personalisation', id: 5 },
   { name: 'Barcoding/ Labelling', id: 6 },
   { name: 'Manual Shipment', id: 7 },
   { name: 'Making up a Gift Pack', id: 8 },
