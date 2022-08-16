@@ -95,7 +95,7 @@ const IndexPage: NextPage = () => {
               try {
                 s3uploadFile(file, emailAd);
                 pics.push(
-                  `http://custs.s3-website.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
+                  `https://custs.s3.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
                 );
               } catch (error) {
                 console.log(error);
