@@ -56,7 +56,7 @@ const IndexPage: NextPage = () => {
     let emailAd: string | undefined;
     // check if id already in db
     const trackingId =
-      'TUP' +
+      'TPWO' +
       String(Date.now() * Math.floor(Math.random() * 100)).slice(-7);
     console.log('id: ', trackingId);
     let trackingIdEntry = { tracking_id: trackingId };

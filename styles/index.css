@@ -5,24 +5,29 @@
 @tailwind utilities;
 
 @layer base {
-  input[type=text][id^='Dimension']{
-    @apply w-2/5
+  input[type='text'][id^='Dimension'] {
+    @apply w-2/5;
   }
 
-  input[type=text], input[type=tel], input[type=email] {
-    @apply w-full p-3 mb-1 bg-white text-black rounded-md  border border-gray-700
+  input[type='text'],
+  input[type='tel'],
+  input[type='email'] {
+    @apply w-full p-3 mb-1 bg-white text-black rounded-md  border border-gray-700;
   }
 
-  input[type=number] {
-    @apply w-1/5 p-3 bg-white text-black rounded-md  border border-gray-700
+  input[type='number'] {
+    @apply w-1/5 p-3 bg-white text-black rounded-md  border border-gray-700;
   }
 
-  input[type=date] {
-    @apply  p-3 bg-white text-black rounded-md  border border-gray-700
+  input[type='date'] {
+    @apply p-3 bg-white text-black rounded-md  border border-gray-700;
+  }
+  input[type='datetime-local'] {
+    @apply p-3 bg-white text-black rounded-md  border border-gray-700;
   }
 
-  input[type=file] {
-    @apply  p-3 bg-white text-black rounded-md  border border-gray-700
+  input[type='file'] {
+    @apply p-3 bg-white text-black rounded-md  border border-gray-700;
   }
 
   label {
@@ -34,11 +39,10 @@
   }
 
   textarea {
-    @apply overflow-auto w-full p-2 bg-white text-black rounded-md  border border-gray-700
+    @apply overflow-auto w-full p-2 bg-white text-black rounded-md  border border-gray-700;
   }
-  
+
   h1 {
     @apply text-2xl;
   }
-
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { supabaseClient } from '../../lib/client';
 import logoOrange from '../../public/logoOrange.png';
+import warehouse from '../../public/warehouse.jpeg';
 
 const FinishedPage: NextPage = (props: any) => {
   const { data } = props;
@@ -14,11 +15,11 @@ const FinishedPage: NextPage = (props: any) => {
           <Layout title="Work Order Submitted | Work Management System | TuPack" />
 
           <div className="items-center flex flex-wrap">
-            <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+            <div className="w-full h-full md:w-4/12 ml-auto mr-auto px-4">
               <img
                 alt="..."
-                className="max-w-full rounded-lg shadow-lg"
-                src="https://images.pexels.com/photos/5119209/pexels-photo-5119209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                className="max-w-full max-h-full rounded-lg shadow-lg"
+                src={warehouse.src}
               />
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -27,20 +28,20 @@ const FinishedPage: NextPage = (props: any) => {
                   <img src={logoOrange.src} alt="logo" />
                 </div>
                 <h3 className="text-5xl font-semibold">
-                  Work Order Submitted
+                  Thank you, your request has been successfully
+                  submitted.
                 </h3>
-                <h3>Order Number: {data.tracking_id}</h3>
-                <strong>
-                  <Link href={'/'}>
-                    Click here to go back to the Homepage
-                  </Link>
-                </strong>
+                <h3>Work Order ID: {data.tracking_id}</h3>
                 {/* // link to tracker homepage */}
                 <p className="mt-4 leading-relaxed text-2xl font-semibold">
-                  Thanks for submitting your order, please check your
-                  email for confirmation along with your related
-                  Zendesk Ticket.
+                  Please check your email for confirmation of receipt
+                  and for any further updates, we’ll be in touch soon!
                 </p>
+                <strong>
+                  <Link href={'/'}>
+                    Please click here to submit another Work Order.
+                  </Link>
+                </strong>
               </div>
             </div>
           </div>
