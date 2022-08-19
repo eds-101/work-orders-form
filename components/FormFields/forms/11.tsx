@@ -24,7 +24,12 @@ const FormExtra: React.FunctionComponent = () => {
       <input required type="text" id="garmentSpecifics" />
 
       <label htmlFor="initial_units_or_quantity">Total Units</label>
-      <input required type="number" id="initial_units_or_quantity" />
+      <input
+        required
+        type="number"
+        min={1}
+        id="initial_units_or_quantity"
+      />
 
       <label htmlFor="upload">Upload Any Attachments</label>
       <input
