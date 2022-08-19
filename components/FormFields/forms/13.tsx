@@ -1,9 +1,15 @@
+import InputMultipleStrings from '../../InputMultipleStrings';
+
 //Rebagging
 const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
-      <label htmlFor="SKU">SKU</label>
-      <input required type="text" id="SKUs" />
+      <label htmlFor="SKU">SKU(s)</label>
+      <InputMultipleStrings
+        inputId="SKUs"
+        buttonName="Add SKU"
+        placeholderText='Type an SKU and click "Add SKU"'
+      />
 
       <label htmlFor="quantity">Quantity</label>
       <input

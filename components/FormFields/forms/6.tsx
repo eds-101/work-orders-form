@@ -26,6 +26,9 @@ const FormExtra: React.FunctionComponent = () => {
         min={1}
         id="initial_units_or_quantity"
       />
+
+      <label>Upload Your Barcode Here</label>
+      <input id="upload" type="file" accept="image/*" />
     </div>
   );
 };

@@ -16,6 +16,11 @@ const FormExtra: React.FunctionComponent = () => {
       <label htmlFor="deliveryAddress">Delivery Address</label>
       <input required type="text" id="deliveryAddress" />
 
+      <label htmlFor="dateTimePreference">
+        Preferred Date and Time of Collection
+      </label>
+      <input required type="datetime-local" id="dateTimePreference" />
+
       <label htmlFor="courierId">Preferred Courier</label>
       <select required name="courierId" id="courierId">
         <option hidden disabled selected></option>
@@ -26,10 +31,10 @@ const FormExtra: React.FunctionComponent = () => {
       <label htmlFor="deliveryType">Delivery Type</label>
       <select required name="deliveryType" id="deliveryType">
         <option hidden disabled selected>
-          Parcel / Packet / Container
+          Parcel / Pallet / Container
         </option>
         <option value="Parcel">Parcel</option>
-        <option value="Packet">Packet</option>
+        <option value="Pallet">Pallet</option>
         <option value="Container">Container</option>
       </select>
 

@@ -38,6 +38,9 @@ const FormExtra: React.FunctionComponent = () => {
 
       <label htmlFor="initial_units_or_quantity">Total Units</label>
       <input required type="number" id="initial_units_or_quantity" />
+
+      <label>Upload Your Barcode Here</label>
+      <input id="upload" type="file" accept="image/*" />
     </div>
   );
 };

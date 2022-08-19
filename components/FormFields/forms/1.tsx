@@ -4,7 +4,7 @@ import InputMultipleStrings from '../../../components/InputMultipleStrings';
 const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
-      <label htmlFor="SKU">SKU(s)</label>
+      <label htmlFor="SKUs">SKU(s)</label>
       <InputMultipleStrings
         inputId="SKUs"
         buttonName="Add SKU"
@@ -32,6 +32,8 @@ const FormExtra: React.FunctionComponent = () => {
         min={1}
         id="initial_units_or_quantity"
       />
+      <label>Upload Your Barcode or Label</label>
+      <input id="upload" type="file" multiple accept="image/*" />
     </div>
   );
 };

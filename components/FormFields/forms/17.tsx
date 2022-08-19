@@ -1,21 +1,33 @@
+import InputMultipleStrings from '../../InputMultipleStrings';
+
 //Stock Count
 const FormExtra: React.FunctionComponent = () => {
+  return (
+    <div>
+      <p>
+        🚨 All stock counts will be completed within 10 workings days
+        of receiving your request.
+      </p>
 
-    return (
-        <div>
-            <label htmlFor="SKU">SKU</label>
-            <input required type="text" id='SKUs' />
+      <label htmlFor="SKUs">SKU(s)</label>
+      <InputMultipleStrings
+        inputId="SKUs"
+        buttonName="Add SKU"
+        placeholderText='Type an SKU and click "Add SKU"'
+      />
 
-            <label htmlFor="timeFrame">Time Frame</label>
-            <input required type="text" id='timeFrame' />
+      <label htmlFor="reasonForCount">Reason For Count</label>
+      <textarea required rows={2} id="reasonForCount" />
 
-            <label htmlFor="reasonForCount">Reason For Count</label>
-            <textarea required rows={3} id='reasonForCount' />
-
-            <label htmlFor="description">Description</label>
-            <textarea required placeholder="Tell Us More..." rows={3} id='description' />
-        </div>
-    )
-}
+      <label htmlFor="description">Description</label>
+      <textarea
+        required
+        placeholder="Tell Us More..."
+        rows={3}
+        id="description"
+      />
+    </div>
+  );
+};
 
 export default FormExtra;

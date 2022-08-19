@@ -18,14 +18,21 @@ const FormExtra: React.FunctionComponent = () => {
         placeholderText='Type an SKU and click "Add SKU"'
       />
 
-      <label htmlFor="garmentSpecifics">Garment Specifics</label>
+      <label htmlFor="garmentSpecifics">
+        Garment Details (e.g. measurements)
+      </label>
       <input required type="text" id="garmentSpecifics" />
 
       <label htmlFor="initial_units_or_quantity">Total Units</label>
       <input required type="number" id="initial_units_or_quantity" />
 
       <label htmlFor="upload">Upload Any Attachments</label>
-      <input type="file" id="upload" multiple accept="image/*" />
+      <input
+        type="file"
+        id="upload"
+        multiple
+        accept="image/*, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf"
+      />
     </div>
   );
 };

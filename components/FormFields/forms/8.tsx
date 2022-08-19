@@ -37,6 +37,15 @@ const FormExtra: React.FunctionComponent = () => {
       <label htmlFor="finalSKU">Final Products SKU</label>
       <input required type="text" id="finalSKU" />
 
+      <label htmlFor="ASNandDate">
+        (Optional) ASN and Date of Expected Arrival
+      </label>
+      <input
+        type="text"
+        id="ASNandDate"
+        placeholder="Please fill for precaution in case of delays"
+      />
+
       <label htmlFor="description">Description</label>
       <textarea
         required

@@ -19,8 +19,12 @@ const FormExtra: React.FunctionComponent = () => {
       <input required type="text" id="packingRequirements" />
       <label htmlFor="deliveryAddress">Delivery Address</label>
       <input required type="text" id="deliveryAddress" />
-      <label htmlFor="dateRequired">Date Required</label>
+      <label htmlFor="dateRequired">
+        Date to be Picked and Packed By
+      </label>
       <input required type="date" min={today} id="dateRequired" />
+      <label htmlFor="dispatchDate">Dispatch Date</label>
+      <input required type="date" min={today} id="dispatchDate" />
       <label htmlFor="initial_units_or_quantity">Total Units</label>
       <input
         required
