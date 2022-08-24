@@ -5,8 +5,8 @@ const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
       <p>
-        🚨 All stock counts will be completed within 10 workings days
-        of receiving your request.
+        We aim to complete stock counts within 10 working days of
+        receiving your request.
       </p>
 
       <label htmlFor="SKUs">SKU(s)</label>

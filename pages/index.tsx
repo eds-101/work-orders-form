@@ -89,7 +89,6 @@ const IndexPage: NextPage = () => {
           //
           if (element.files) {
             [...element.files].forEach((file: File) => {
-              console.log(element.files);
               try {
                 s3uploadFile(file, emailAd);
                 pics.push(
