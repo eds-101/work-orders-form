@@ -54,7 +54,6 @@ const IndexPage: NextPage = () => {
     let pics: string[] = [];
     let skus: string[] = [];
     let emailAd: string | undefined;
-    // check if id already in db
     const trackingId =
       'TPWO' +
       String(Date.now() * Math.floor(Math.random() * 100)).slice(-7);
@@ -64,7 +63,7 @@ const IndexPage: NextPage = () => {
     Array.prototype.forEach.call(
       e.target.elements,
       (element: Element) => {
-        // console.log(element.id, ' ', element.value);
+        console.log(element.id, ' ', element.value);
         if (element.id && element.id === 'SKUs') {
           skus.push(String(element.value));
         } else if (element.id && element.id.includes('SKU:')) {
@@ -90,6 +89,7 @@ const IndexPage: NextPage = () => {
           //
           if (element.files) {
             [...element.files].forEach((file: File) => {
+              console.log(element.files);
               try {
                 s3uploadFile(file, emailAd);
                 pics.push(
@@ -116,7 +116,16 @@ const IndexPage: NextPage = () => {
         }
       }
     );
-    pics.length > 0 ? (specificFields['pics'] = pics) : null;
+    if (pics.length > 0) {
+      if (specificFields['pics']) {
+        specificFields['pics'] = pics;
+      } else {
+        console.log('here');
+        specificFields['pics'] = pics;
+      }
+    } else {
+      null;
+    }
 
     try {
       // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
