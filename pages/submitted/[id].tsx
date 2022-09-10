@@ -39,7 +39,9 @@ const FinishedPage: NextPage = (props: any) => {
                 </p>
                 <strong>
                   <Link href={'/'}>
-                    Please click here to submit another Work Order.
+                    <a className="text-blue-700 no-underline hover:underline">
+                      Please click here to submit another Work Order.
+                    </a>
                   </Link>
                 </strong>
               </div>
