@@ -9,6 +9,7 @@ import { dataUpload } from '../api/dataUpload';
 import { submitZendeskTicket } from '../api/submitZendeskTicket';
 import workOrders from '../data/workOrders';
 import Router from 'next/router';
+import { putSKUsStringInSKUArray } from '../lib/helpers';
 
 interface Element {
   id?: string | undefined;
@@ -69,6 +70,8 @@ const IndexPage: NextPage = () => {
         } else if (element.id && element.id.includes('SKU:')) {
           skus = skus.filter((sku) => sku.includes('SKU:'));
           skus.push(element.id);
+        } else if (element.id && element.id === 'SKUs_array') {
+          putSKUsStringInSKUArray(element.value, skus);
         } else if (element.id === 'work_task_id') {
           insertData['work_task_id'] = element.value;
         } else if (element.id === 'initial_units_or_quantity') {
