@@ -1,14 +1,16 @@
 //Bag and tag
-import InputMultipleStrings from '../../../components/InputMultipleStrings';
 
 const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
-      <label htmlFor="SKUs">SKU(s)</label>
-      <InputMultipleStrings
-        inputId="SKUs"
-        buttonName="Add SKU"
-        placeholderText='Type an SKU and click "Add SKU"'
+      <label htmlFor="SKUs">
+        Add SKUs - Please separate each SKU id with a space
+      </label>
+      <input
+        required
+        type="text"
+        id="SKUs_array"
+        placeholder="Example: SKU1 SKU2 SKU3"
       />
       <label htmlFor="flatOrHanging">Flat or Hanging item?</label>
       <select required name="flatOrHanging" id="flatOrHanging">

@@ -1,5 +1,4 @@
 //Quality Check: Garments
-import InputMultipleStrings from '../../InputMultipleStrings';
 const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
@@ -11,11 +10,14 @@ const FormExtra: React.FunctionComponent = () => {
         id="description"
       />
 
-      <label htmlFor="SKUs">SKU(s)</label>
-      <InputMultipleStrings
-        inputId="SKUs"
-        buttonName="Add SKU"
-        placeholderText='Type an SKU and click "Add SKU"'
+      <label htmlFor="SKUs">
+        Add SKUs - Please separate each SKU id with a space
+      </label>
+      <input
+        required
+        type="text"
+        id="SKUs_array"
+        placeholder="Example: SKU1 SKU2 SKU3"
       />
 
       <label htmlFor="garmentSpecifics">
