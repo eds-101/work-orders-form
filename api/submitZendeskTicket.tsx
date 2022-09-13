@@ -19,10 +19,14 @@ export const submitZendeskTicket = async (
         name: primaryData['name'],
         email: primaryData['email'],
       },
+      custom_fields: [
+        {
+          Brand: primaryData['brand_entry']
+            ? primaryData['brand_entry']
+            : 'TBC',
+        },
+      ],
       subject: `New Order: ${orderType} - ${primaryData['tracking_id']}`,
-      Brand: primaryData['brand_entry']
-        ? primaryData['brand_entry']
-        : 'TBC',
       comment: {
         body: comment,
       },
