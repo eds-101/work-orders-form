@@ -19,18 +19,13 @@ export const submitZendeskTicket = async (
         name: primaryData['name'],
         email: primaryData['email'],
       },
-      Brand: 'test',
       custom_fields: [
-        // {
-        //   Brand: primaryData['brand_entry']
-        //     ? primaryData['brand_entry']
-        //     : 'TBC',
-        // },
         {
-          Brand: 'test2',
+          id: 360026831397, //Tupack field for Brand name
+          value: 'Hadeda',
         },
       ],
-      subject: `New Order: ${orderType} - ${primaryData['tracking_id']}`,
+      subject: `WMS New Order: ${primaryData['brand_entry']} | ${orderType} #${primaryData['tracking_id']}`,
       comment: {
         body: comment,
       },
