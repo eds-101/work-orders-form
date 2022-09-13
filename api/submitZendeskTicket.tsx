@@ -20,6 +20,9 @@ export const submitZendeskTicket = async (
         email: primaryData['email'],
       },
       subject: `New Order: ${orderType} - ${primaryData['tracking_id']}`,
+      Brand: primaryData['brand_entry']
+        ? primaryData['brand_entry']
+        : 'TBC',
       comment: {
         body: comment,
       },

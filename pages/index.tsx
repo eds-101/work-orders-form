@@ -128,7 +128,7 @@ const IndexPage: NextPage = () => {
     } else {
       null;
     }
-
+    console.log(skus);
     try {
       // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
       const zendeskData = await submitZendeskTicket(
