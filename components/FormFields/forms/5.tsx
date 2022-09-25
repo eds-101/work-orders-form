@@ -4,14 +4,16 @@ import InputMultipleStrings from '../../InputMultipleStrings';
 const FormExtra: React.FunctionComponent = () => {
   return (
     <div>
-      <label htmlFor="orderNumber">Order Number(s)</label>
-      <InputMultipleStrings
-        inputId="orderNumbers"
-        buttonName="Add Number"
-        placeholderText='Add Order Number > click "Add Number"'
-      />
+      <label htmlFor="orderNumbers">
+        Order Number(s) Please separate each order with a space
+      </label>
 
-      <input required type="text" id="orderNumbers" />
+      <input
+        required
+        type="text"
+        id="orderNumbers"
+        placeholder="Example: Order1 Order2 Order3"
+      />
 
       <label htmlFor="message">Message</label>
       <textarea required rows={3} id="message" />
