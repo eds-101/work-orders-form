@@ -1,5 +1,3 @@
-import InputMultipleStrings from '../../InputMultipleStrings';
-
 //Personalised Inserts
 const FormExtra: React.FunctionComponent = () => {
   return (
