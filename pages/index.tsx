@@ -104,6 +104,7 @@ const IndexPage: NextPage = () => {
                 );
               } catch (error) {
                 console.log(error);
+                alert('Error uploading Image(s), please try again');
                 throw new Error('Error uploading Image');
               }
             });

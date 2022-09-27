@@ -47,6 +47,7 @@ export const submitZendeskTicket = async (
     return await response.json();
   } catch (error) {
     console.log(error);
+    alert('Error creating Zendesk ticket, please try again');
     throw new Error('Zendesk Ticket Creation error');
   }
 };
