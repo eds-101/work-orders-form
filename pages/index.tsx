@@ -154,10 +154,7 @@ const IndexPage: NextPage = () => {
         orderNumbers: orderNumbers,
       };
       specificFields = { ...specificFields, ...idSpecificFields };
-      const extraData = await dataUpload(
-        specificFields,
-        'specific_fields'
-      );
+      await dataUpload(specificFields, 'specific_fields');
       // console.log(extraData);
 
       Router.push({
