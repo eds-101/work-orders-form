@@ -65,7 +65,7 @@ const IndexPage: NextPage = () => {
     Array.prototype.forEach.call(
       e.target.elements,
       (element: Element) => {
-        console.log(element.id, ' ', element.value);
+        // console.log(element.id, ',', element.value);
         if (element.id && element.id === 'SKUs') {
           skus.push(String(element.value));
         } else if (element.id && element.id.includes('SKU:')) {
@@ -73,7 +73,6 @@ const IndexPage: NextPage = () => {
           skus.push(element.id);
         } else if (element.id && element.id === 'SKUs_array') {
           putStringsInArray(element.value, skus);
-        } else if (element.id === 'work_task_id') {
         } else if (element.id && element.id === 'orderNumbers') {
           putStringsInArray(element.value, orderNumbers);
         } else if (element.id === 'work_task_id') {
@@ -99,7 +98,9 @@ const IndexPage: NextPage = () => {
               try {
                 s3uploadFile(file, emailAd);
                 pics.push(
-                  `https://custs.s3.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
+                  encodeURI(
+                    `https://custs.s3.eu-west-2.amazonaws.com/${emailAd}/${file.name}`
+                  )
                 );
               } catch (error) {
                 console.log(error);
@@ -126,7 +127,6 @@ const IndexPage: NextPage = () => {
       if (specificFields['pics']) {
         specificFields['pics'] = pics;
       } else {
-        console.log('here');
         specificFields['pics'] = pics;
       }
     } else {
@@ -139,7 +139,7 @@ const IndexPage: NextPage = () => {
         specificFields,
         workOrders
       );
-      console.log(zendeskData);
+      // console.log(zendeskData);
       insertData = {
         ...insertData,
         zendesk_id: zendeskData.request.id,
@@ -148,7 +148,6 @@ const IndexPage: NextPage = () => {
       let primaryData: any;
       primaryData = await dataUpload(insertData, 'order');
       const orderId = primaryData[0].id;
-      console.log(primaryData);
       const idSpecificFields = {
         order_id: orderId,
         skus: skus,
@@ -159,7 +158,7 @@ const IndexPage: NextPage = () => {
         specificFields,
         'specific_fields'
       );
-      console.log(extraData);
+      // console.log(extraData);
 
       Router.push({
         pathname: `/submitted/${orderId}`,
