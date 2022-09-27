@@ -165,6 +165,7 @@ const IndexPage: NextPage = () => {
       });
     } catch (error) {
       console.log(error);
+      alert('Error Submitting Form!');
       throw new Error('Problem submitting form - please try again.');
     }
   };

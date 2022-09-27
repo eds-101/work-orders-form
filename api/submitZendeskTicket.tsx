@@ -10,7 +10,7 @@ export const submitZendeskTicket = async (
   }, '');
 
   const orderType = workOrders.filter((order: any) => {
-    return order.id.toString() === primaryData.work_task_id;
+    return order.id.toString() == primaryData.work_task_id;
   })[0].name;
 
   const data = {
@@ -22,7 +22,7 @@ export const submitZendeskTicket = async (
       custom_fields: [
         {
           id: 360026831397, //Tupack field for Brand name
-          value: 'Hadeda',
+          value: 'TBC',
         },
       ],
       subject: `WMS New Order: ${primaryData['brand_entry']} | ${orderType} #${primaryData['tracking_id']}`,
@@ -47,6 +47,6 @@ export const submitZendeskTicket = async (
     return await response.json();
   } catch (error) {
     console.log(error);
-    return null;
+    throw new Error('Zendesk Ticket Creation error');
   }
 };
