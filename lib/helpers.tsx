@@ -1,9 +1,9 @@
-export const putSKUsStringInSKUArray = (
-  skuString: string,
-  skuArray: String[]
+export const putStringsInArray = (
+  string: string,
+  array: String[]
 ) => {
-  let skusSplit = skuString.split(' ');
-  skusSplit.forEach((sku: string) => {
-    skuArray.push(sku);
+  let line = string.split(' ');
+  line.forEach((el: string) => {
+    array.push(el);
   });
 };
