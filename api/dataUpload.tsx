@@ -10,6 +10,7 @@ export const dataUpload = async (dataFields: any, refTable: any) => {
     alert(
       'Something went wrong, please check your fields and try again'
     );
+    throw new Error('Data upload error');
   }
   return data;
 };
