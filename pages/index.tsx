@@ -51,7 +51,7 @@ const IndexPage: NextPage = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     let insertData: any;
-    let specificFields: any;
+    let specificFields: any = { pics: null };
     let pics: string[] = [];
     let skus: string[] = [];
     let orderNumbers: string[] = [];
@@ -125,13 +125,7 @@ const IndexPage: NextPage = () => {
       }
     );
     if (pics.length > 0) {
-      if (specificFields['pics']) {
-        specificFields['pics'] = pics;
-      } else {
-        specificFields['pics'] = pics;
-      }
-    } else {
-      null;
+      specificFields['pics'] = pics;
     }
     try {
       // Submit Zendesk Ticket and get the zendesk ticket id and save it in order table
@@ -211,6 +205,7 @@ const IndexPage: NextPage = () => {
                 />
 
                 <input
+                  required
                   className="w-full p-2 text-black placeholder-black rounded-md  border"
                   id="email"
                   placeholder="Email Address"
