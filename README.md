@@ -1,7 +1,7 @@
 Work Orders Form
 =================
 
-Next.js form to submit new Work Orders for the Work Management System [ADD LINK].
+Next.js form to submit new Work Orders for the Work Management System.
 Live on https://www.workorder.tupack.co.uk/
 
 <img src="screenshot.png" alt="screenshot" width="200" height="400"/>
