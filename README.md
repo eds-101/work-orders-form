@@ -9,7 +9,7 @@ Live on https://www.workorder.tupack.co.uk/
 ### Getting started
 ```
 Request and update .env.local file
-git clone git@github.com:eds-101/work-orders.git
+git clone git@github.com:eds-101/work-orders-form.git
 cd work-orders
 yarn  #install dependencies
 yarn dev #start server, get localhost link
